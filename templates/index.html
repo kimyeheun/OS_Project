@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Process Simulator</title>
+    <link rel = "stylesheet" href="{% static 'style.css' %}">
+    <script src="{% static 'style.js' %}"></script>
+</head>
+<body>
+<!-- 전체 화면 삼분할 -->
+<div class="main" id = "totalScreen" style="--bs-columns: 12;" >
+    <!--왼쪽 구역 -->
+    <div class="g-col-6" id = "process">
+        <table class= "process" id = "processTable" style="width:100%; box-sizing: content-box">
+            <tr>
+                <th id ="name">Process Name</th>
+                <th id="at">AT</th>
+                <th id="bt">BT</th>
+            </tr>
+            <tbody id = "processOne">
+                <tr id = "process1">
+                    <td id="realName">Process1 (P1)</td>
+                    <td id="realAt">
+                        <input type="text" name="arrivalTime" required size="10">
+                    </td>
+                    <td id="realBt">
+                        <input type="text" name="burstTime" required size="10">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="plusProcessor" id ="plus" onclick='addProcessor()' >
+            +
+        </button>
+    </div>
+
+    <!--가운데 구역 -->
+    <div class="g-col-5">
+        <div class="processCore" id = "core&algorithm" style = "width:100%">
+            <!-- Process 인덱스 부분-->
+            <div class="Core">
+                    <div id="Core">
+                        Core
+                    </div>
+                <div id="PCCore">
+                    <div id = "PCore">
+                        <button class="CoreType" id="core1" onclick="changeColor(1)" >
+                            OFF
+                        </button>
+                        <button class="CoreType" id="core2" onclick="changeColor(2)">
+                            OFF
+                        </button>
+                    </div>
+
+                    <div id = "CCore">
+                        <button class="CoreType" id="core3" onclick="changeColor(3)">
+                            OFF
+                        </button>
+                        <button class="CoreType" id="core4" onclick="changeColor(4)">
+                            OFF
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--알고리즘 부분-->
+        <div id = "Algorithm">
+            <select id = "Algorithms" name = "Algorithm" class="dropdown-menu" onchange="algorithmExplain(this)">
+                <option value="select">MyAlgorithm</option>
+                <option value="FCFS">FCFS (First Come First Service)</option>
+                <option value="RR">RR (Round Robin)</option>
+                <option value="SPN">SPN (The Shortest Process Next)</option>
+            </select>
+        </div>
+        <div id = "RR">
+            <div id = "LabelRR"> RR (δ) : </div>
+            <label>
+                <input type="text" name="burstTime" required size="10">
+            </label>
+        </div>
+
+        <!--시뮬레이터 로그 부분-->
+        <div class = "simulatorTable">
+            <table class= "simulator" style="width:100%;">
+                <tr>
+                    <th id ="Log" onclick='addSimulator()'> Simulator Log</th>
+                </tr>
+                <tbody id = "Logs">
+                    <tr id = "logOne">
+                        <td id="logName">
+<!--                            <button id = "logButton"> hi </button>-->
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="current-simulator">
+            <div id="current">
+                Processor : <span class="processCnt">0</span> | P Core : <span class="PCoreCnt">0</span> | E Core : <span class="ECoreCnt">0</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 왼쪽 구역-->
+    <div class="g-col-1" id="rightContainer">
+        <div id = "titleImage">
+            {% load static %}
+            <img src="{% static 'Title.png' %}" alt="Title">
+        </div>
+        <div id = "goAndImage" >
+            <div id = "go">
+                <button id = "goButton">GO!</button>
+            </div>
+            <div id="team_name">
+                BOSS
+            </div>
+        </div>
+        <!--explain 부분 -->
+        <div class="algorithmExplain" id = "algorithmExplain" style = "width:100%">
+            <!-- Process 인덱스 부분-->
+            <div class="explain">
+                <div id="explain">
+                    Explain
+                </div>
+                <div id="explainText">
+                    <div id = "explainText1">
+                        MyAlgorithm 설명이지롱~
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

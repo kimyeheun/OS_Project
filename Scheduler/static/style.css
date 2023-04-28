@@ -1,0 +1,332 @@
+@font-face {
+    font-family: 'Signika';
+    src: url("Signika-Medium.ttf");
+}
+
+* {
+    padding: 0;
+    margin-top: 0;
+    box-sizing: border-box;
+}
+
+html {
+    width:100%;
+    height: 100%;
+}
+body {
+    min-height: 100vh;
+}
+
+div {
+    font-family: "Signika", serif;
+    font-size: 25px;
+}
+
+.main{
+    display: flex;
+    width:100%;
+    min-height: 100vh;
+}
+
+/*
+왼쪽 부분
+ */
+.g-col-6{
+    border: 10px solid #5392A2;
+    border-radius: 15px;
+    width: 44%;
+    min-height: 100%;
+    text-align: center;
+    margin:5px;
+}
+
+#processTable{
+    border-collapse : collapse;
+    border-spacing : 0;
+    color: #3A6E87;
+}
+
+th{
+    background: #5392A2;
+    font-size: 150%;
+    color: white;
+}
+
+input{
+    background: #CBDEE3;
+    border-radius: 15px;
+    border: none;
+    text-align: center;
+    font-size: 25px;
+    margin: 6px;
+    width: 80%;
+    color: #3A6E87;
+}
+#plus{
+    background: #92C4D0;
+    width:90%;
+    border: none;
+    color:white;
+    font-size: 25px;
+    margin: 25px 2px 5px 2px;
+    border-radius: 15px;
+}
+
+
+
+/*
+가운데 부분
+ */
+.g-col-5 {
+    width: 33%;
+    text-align: center;
+    margin: 5px;
+}
+/*
+코어 부분
+ */
+.processCore{
+    border:10px solid #62C184;
+    border-radius: 15px;
+    text-align: center;
+    box-sizing: border-box;
+    width:100%;
+}
+
+.processCore > .Core > #Core{
+    background: #62C184;
+    font-size: 40px;
+    color: white;
+}
+.processCore > .Core > #PCCore{
+    display: flex;
+    justify-content: center;
+}
+
+.CoreType{
+    background: #D0EDDA;
+    border: 3px solid #61C184;
+    color: white;
+    width: 8em;
+    border-radius: 15px;
+    margin: 15px;
+}
+#P, #E{
+    width: 90%;
+    justify-content: center;
+    background: #D0EDDA;
+    border-radius: 15px;
+    border: 3px solid #61C184;
+}
+
+button{
+    font-family: "Signika", serif;
+    font-size: 25px;
+}
+
+
+/*
+알고리즘
+*/
+#Algorithm{
+    box-sizing: content-box;
+}
+.dropdown-menu {
+    margin-top: 25px;
+    padding: 10px;
+    width:100%;
+    border-radius: 15px;
+    border : none;
+    height: 65px;
+    background: #99B0B6;
+    font-size: 25px;
+    color: black;
+    font-family: "Signika", serif;
+}
+
+option{
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 15px;
+    outline: 0;
+}
+
+/*
+RR
+ */
+#RR {
+    margin-top: 10px;
+}
+#RR > #LabelRR{
+    text-decoration-line: underline;
+    text-decoration-thickness: 2px;
+
+    float: left;
+    width: 20%;
+    top: 50%;
+}
+#RR> label > input {
+    background: #E2E4B2;
+    width:75%;
+    float: right;
+    vertical-align: center;
+}
+
+/*
+시뮬레이터
+ */
+.simulatorTable {
+    margin-top : 70px;
+    border:10px solid #F8DE75;
+    border-radius: 15px;
+    text-align: center;
+    box-sizing: border-box;
+    height: 350px;
+    overflow-y: scroll;
+}
+
+.simulator{
+    border-collapse : collapse;
+    border-spacing: 0;
+}
+
+.simulatorTable::-webkit-scrollbar {
+    display: none;
+}
+
+#Log{
+    background: #F8DE75;
+    font-size: 130%;
+    color: #3B6F88;
+}
+
+.simulatorTable table tbody{
+    overflow-y: scroll;
+    height: 30px;
+}
+
+.simulatorTable  table  tbody  tr  td  button {
+    border: 5px solid #F8DE75;
+    margin-top: 2%;
+    margin-left: 2%;
+    border-radius: 15px;
+    width: 90%;
+    font-size: 35px;
+    color: #3B6F88;
+}
+
+.plusProcess {
+    background: #F8DE75;
+    color : white;
+    position: sticky;
+    border: none;
+    border-radius: 15px;
+    width: 15%;
+    top: 85%;
+    left : 80%;
+}
+
+#current-simulator {
+    background: #D9D9D9;
+    width:100%;
+    height: 80px;
+    border-radius: 15px;
+    margin-top: 25px;
+
+    display:table;
+    table-layout:fixed;
+    text-align: center;
+}
+
+#current-simulator > #current {
+    font-size: 100%;
+    vertical-align: middle;
+    display: table-cell;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+
+/*
+오른쪽 부분
+ */
+.g-col-1 {
+    width: 25%;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+#goAndImage {
+    flex-direction: row;
+}
+#go {
+    padding-top:8px;
+    padding-left: 8px;
+    float:left;
+    display: flex;
+    width:40%;
+    height:90%;
+}
+
+#go > #goButton {
+    width: 100%;
+    background: #EA315A;
+    color:white;
+    border: none;
+    border-radius: 15px;
+}
+
+#go > #goButton:hover {
+    width: 100%;
+    background: darkred;
+    color:white;
+    border: none;
+    border-radius: 15px;
+}
+#titleImage{
+    float: right;
+    display: flex;
+    justify-content: right;
+}
+#titleImage > img {
+    max-width: 100%;
+}
+#team_name {
+    float:right;
+    display: flex;
+    justify-content: right;
+    font-size: 200%;
+    color: #4A59DF;
+    width:60%;
+}
+
+.algorithmExplain{
+    margin-top: 5%;
+    margin-left: 1%;
+    border:10px solid #9699F1;
+    border-radius: 15px;
+    text-align: center;
+    box-sizing: border-box;
+    height:80%;
+}
+
+#explain{
+    background: #9699F1;
+    font-size: 140%;
+    color: white;
+    height:100%;
+}
+
+.algorithmExplain> .explain > #explainText > #explainText1 {
+    margin-top: 1%;
+    border-radius: 15px;
+    width: 95%;
+    font-size: 100%;
+    color: #9699F1;
+}
+
+
