@@ -191,7 +191,7 @@
                 <!-- 다운로드 버튼 -->
                 <!-- 이미지 버튼으로 만들기 -->
                 <div class="download" id="download">
-                    <img src="../res/Download.png" alt="Download" id="downloadIcon">
+                    <img src="{% static 'Download.png' %}" alt="Download" id="downloadIcon">
                     <!-- <button id="downloadButton">
                 Download
             </button> -->
@@ -224,7 +224,7 @@
                         <!-- <button id="createChartBt">Create Chart</button><br><br> -->
                         <div id="baseTable"></div>
                         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                        <script type="text/javaScript" src="gantt.js"></script>
+                        <script type="text/javaScript" src="{% static 'gantt.js'%}"></script>
                     </div>
                 </div>
             </div>
