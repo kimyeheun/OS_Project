@@ -10,9 +10,10 @@
 }
 
 html {
-    width:100%;
+    width: 100%;
     height: 100%;
 }
+
 body {
     min-height: 100vh;
 }
@@ -22,37 +23,37 @@ div {
     font-size: 25px;
 }
 
-.main{
+.main {
     display: flex;
-    width:100%;
+    width: 100%;
     min-height: 100vh;
 }
 
 /*
 왼쪽 부분
  */
-.g-col-6{
+.g-col-6 {
     border: 10px solid #5392A2;
     border-radius: 15px;
     width: 44%;
     min-height: 100%;
     text-align: center;
-    margin:5px;
+    margin: 5px;
 }
 
-#processTable{
-    border-collapse : collapse;
-    border-spacing : 0;
+#processTable {
+    border-collapse: collapse;
+    border-spacing: 0;
     color: #3A6E87;
 }
 
-th{
+th {
     background: #5392A2;
     font-size: 150%;
     color: white;
 }
 
-input{
+input {
     background: #CBDEE3;
     border-radius: 15px;
     border: none;
@@ -62,11 +63,12 @@ input{
     width: 80%;
     color: #3A6E87;
 }
-#plus{
+
+#plus {
     background: #92C4D0;
-    width:90%;
+    width: 90%;
     border: none;
-    color:white;
+    color: white;
     font-size: 25px;
     margin: 25px 2px 5px 2px;
     border-radius: 15px;
@@ -82,28 +84,30 @@ input{
     text-align: center;
     margin: 5px;
 }
+
 /*
 코어 부분
  */
-.processCore{
-    border:10px solid #62C184;
+.processCore {
+    border: 10px solid #62C184;
     border-radius: 15px;
     text-align: center;
     box-sizing: border-box;
-    width:100%;
+    width: 100%;
 }
 
-.processCore > .Core > #Core{
+.processCore>.Core>#Core {
     background: #62C184;
     font-size: 40px;
     color: white;
 }
-.processCore > .Core > #PCCore{
+
+.processCore>.Core>#PCCore {
     display: flex;
     justify-content: center;
 }
 
-.CoreType{
+.CoreType {
     background: #D0EDDA;
     border: 3px solid #61C184;
     color: white;
@@ -111,7 +115,9 @@ input{
     border-radius: 15px;
     margin: 15px;
 }
-#P, #E{
+
+#P,
+#E {
     width: 90%;
     justify-content: center;
     background: #D0EDDA;
@@ -119,7 +125,7 @@ input{
     border: 3px solid #61C184;
 }
 
-button{
+button {
     font-family: "Signika", serif;
     font-size: 25px;
 }
@@ -128,15 +134,16 @@ button{
 /*
 알고리즘
 */
-#Algorithm{
+#Algorithm {
     box-sizing: content-box;
 }
+
 .dropdown-menu {
     margin-top: 25px;
     padding: 10px;
-    width:100%;
+    width: 100%;
     border-radius: 15px;
-    border : none;
+    border: none;
     height: 65px;
     background: #99B0B6;
     font-size: 25px;
@@ -144,7 +151,7 @@ button{
     font-family: "Signika", serif;
 }
 
-option{
+option {
     padding-left: 10px;
     padding-right: 10px;
     border-radius: 15px;
@@ -157,7 +164,8 @@ RR
 #RR {
     margin-top: 10px;
 }
-#RR > #LabelRR{
+
+#RR>#LabelRR {
     text-decoration-line: underline;
     text-decoration-thickness: 2px;
 
@@ -165,9 +173,10 @@ RR
     width: 20%;
     top: 50%;
 }
-#RR> label > input {
+
+#RR>label>input {
     background: #E2E4B2;
-    width:75%;
+    width: 75%;
     float: right;
     vertical-align: center;
 }
@@ -176,8 +185,8 @@ RR
 시뮬레이터
  */
 .simulatorTable {
-    margin-top : 70px;
-    border:10px solid #F8DE75;
+    margin-top: 70px;
+    border: 10px solid #F8DE75;
     border-radius: 15px;
     text-align: center;
     box-sizing: border-box;
@@ -185,8 +194,8 @@ RR
     overflow-y: scroll;
 }
 
-.simulator{
-    border-collapse : collapse;
+.simulator {
+    border-collapse: collapse;
     border-spacing: 0;
 }
 
@@ -194,18 +203,18 @@ RR
     display: none;
 }
 
-#Log{
+#Log {
     background: #F8DE75;
     font-size: 130%;
     color: #3B6F88;
 }
 
-.simulatorTable table tbody{
+.simulatorTable table tbody {
     overflow-y: scroll;
     height: 30px;
 }
 
-.simulatorTable  table  tbody  tr  td  button {
+.simulatorTable table tbody tr td button {
     border: 5px solid #F8DE75;
     margin-top: 2%;
     margin-left: 2%;
@@ -217,28 +226,28 @@ RR
 
 .plusProcess {
     background: #F8DE75;
-    color : white;
+    color: white;
     position: sticky;
     border: none;
     border-radius: 15px;
     width: 15%;
     top: 85%;
-    left : 80%;
+    left: 80%;
 }
 
 #current-simulator {
     background: #D9D9D9;
-    width:100%;
+    width: 100%;
     height: 80px;
     border-radius: 15px;
     margin-top: 25px;
 
-    display:table;
-    table-layout:fixed;
+    display: table;
+    table-layout: fixed;
     text-align: center;
 }
 
-#current-simulator > #current {
+#current-simulator>#current {
     font-size: 100%;
     vertical-align: middle;
     display: table-cell;
@@ -263,65 +272,69 @@ RR
 #goAndImage {
     flex-direction: row;
 }
+
 #go {
-    padding-top:8px;
+    padding-top: 8px;
     padding-left: 8px;
-    float:left;
+    float: left;
     display: flex;
-    width:40%;
-    height:90%;
+    width: 40%;
+    height: 90%;
 }
 
-#go > #goButton {
+#go>#goButton {
     width: 100%;
     background: #EA315A;
-    color:white;
+    color: white;
     border: none;
     border-radius: 15px;
 }
 
-#go > #goButton:hover {
+#go>#goButton:hover {
     width: 100%;
     background: darkred;
-    color:white;
+    color: white;
     border: none;
     border-radius: 15px;
 }
-#titleImage{
+
+#titleImage {
     float: right;
     display: flex;
     justify-content: right;
 }
-#titleImage > img {
+
+#titleImage>img {
     max-width: 100%;
 }
+
 #team_name {
-    float:right;
+    float: right;
     display: flex;
     justify-content: right;
     font-size: 200%;
     color: #4A59DF;
-    width:60%;
+    width: 60%;
 }
 
-.algorithmExplain{
+.algorithmExplain {
     margin-top: 5%;
     margin-left: 1%;
-    border:10px solid #9699F1;
+    border: 10px solid #9699F1;
     border-radius: 15px;
     text-align: center;
     box-sizing: border-box;
-    height:80%;
+    height: 80%;
 }
 
-#explain{
+#explain {
     background: #9699F1;
     font-size: 140%;
     color: white;
-    height:100%;
+    height: 100%;
 }
 
-.algorithmExplain> .explain > #explainText > #explainText1 {
+.algorithmExplain>.explain>#explainText>#explainText1 {
     margin-top: 1%;
     border-radius: 15px;
     width: 95%;
@@ -330,3 +343,254 @@ RR
 }
 
 
+
+
+/* 다음 페이지 */
+#chartScreen {
+    /* 화면 전체크기로 지정 */
+    min-height: 100vh;
+    margin-top: 70px;
+    width: 100%;
+    height: 100%;
+    float: right;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.leftPart {
+    /* process 부분 */
+    /* margin-top : 70px; */
+    margin-right: 8pt;
+    width: 41%;
+    /* min-height: max-content; */
+    height: 100%;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.rightPart {
+    /* margin-top : 70px; */
+    width: 57%;
+    height: inherit;
+    float: right;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: left; */
+    align-items: center;
+}
+
+/* .rightUpPart{
+    width: 100%;
+    height: 100%;
+    float: right;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* align-items: center;
+} */
+
+#rightUpContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+
+.performance {
+    box-sizing: border-box;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    /* margin-top : 70px; */
+    margin-right: 0px;
+    border: 10px solid #F8DE75;
+    border-radius: 15px;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+}
+
+#processorPerforms {
+    /* background: #9699F1; */
+    width: 100%;
+    font-size: 140%;
+    /* color: white; */
+    height: 100%;
+    align-items: center;
+}
+
+/* 프로세서 개당 효율 */
+#processorPerforms>#processorPerformOne {
+    border: 3px solid #F8DE75;
+    background: #F8DE75;
+    margin: 10px;
+    border-radius: 15px;
+    width: 80%;
+    font-size: 100%;
+    color: #3B6F88;
+    text-align: left;
+}
+
+#perform {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background: #F8DE75;
+    font-size: 140%;
+    color: #3B6F88;
+}
+
+#download {
+    /* padding-top:70px; */
+    padding-left: 8px;
+    float: right;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 15%;
+    height: 100%;
+}
+
+#download>#downloadIcon {
+    width: 60pt;
+    background: #EA315A;
+    color: white;
+    border: none;
+    border-radius: 15px;
+}
+
+#download>#downloadButton {
+    width: 100%;
+    background: #EA315A;
+    color: white;
+    border: none;
+    border-radius: 15px;
+}
+
+#download>#downloadIcon:hover {
+    width: 60pt;
+    background: darkred;
+    /* color:white; */
+    border: none;
+    border-radius: 15px;
+}
+
+/* 간트 차트 */
+.ganttChartBar {
+    /* padding-bottom: 10%; */
+    box-sizing: border-box;
+    float: right;
+    display: flex;
+    flex-direction: column;
+    margin-top: 8px;
+    margin-right: 0px;
+    border: 10px solid #83C0B3;
+    border-radius: 15px;
+    text-align: center;
+    height: 100%;
+    /* min-height: min-content; */
+    width: 100%;
+}
+
+.ganttChart {
+    border-collapse: collapse;
+    border-spacing: 0;
+    background: #83C0B3;
+    font-size: 140%;
+    color: #FFFFFF;
+    /* table-layout: fixed;
+    width: 100%; */
+}
+
+#ganttChartBase {
+    background: #FFFFFF;
+    color: #83C0B3;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    /* align-items: center; */
+    width: 100%;
+    font-size: 100%;
+    /* color: white; */
+    height: 100%;
+
+    /* 스크롤바 생성 */
+    /* white-space: nowrap; */
+    overflow: auto;
+}
+
+/* 스크롤바 꾸미기 */
+.ganttChartBase::-webkit-scrollbar {
+    /* width: 20px; */
+}
+
+#baseTable {
+    border-collapse: collapse;
+    border-spacing: 0;
+    background: #FFFFFF;
+    color: #83C0B3;
+    font-size: 100%;
+    height: 100%;
+    width: auto;
+}
+
+#ganttTable {
+    /* border-collapse : collapse;
+    border-spacing : 0; */
+    background: #FFFFFF;
+    color: #83C0B3;
+    font-size: 100%;
+    height: 100%;
+    /* 셀의 넓이 고정 */
+    table-layout: fixed;
+    width: 700px;
+}
+
+#tableRow {
+    border-collapse: collapse;
+    border-spacing: 0;
+    background: #FFFFFF;
+    color: #83C0B3;
+    font-size: 100%;
+    height: 100%;
+    width: 100%;
+}
+
+#tableCol {
+    border-collapse: collapse;
+    border-spacing: 0;
+    background: #FFFFFF;
+    color: #FFFFFF;
+    font-size: 90%;
+    height: 100%;
+}
+
+#innerHeader {
+    /* display: block;
+    overflow: auto; */
+    background: #FFFFFF;
+    color: #83C0B3;
+    font-size: 100%;
+
+    table-layout: fixed;
+    width: 100%;
+}
+
+/* 간트차트 타임 스탬프 스타일 */
+#timeStamp {
+    /* display: block;
+    overflow: auto; */
+    border-collapse: collapse;
+    border-spacing: 0;
+    background: #FFFFFF;
+    color: #83C0B3;
+    font-size: 100%;
+    height: 100%;
+}
