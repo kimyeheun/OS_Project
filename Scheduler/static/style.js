@@ -13,7 +13,7 @@ function addProcessor() {
     let at = row.insertCell(1);
     let bt = row.insertCell(2);
 
-    processName.innerHTML =  '<td id="realName">Process'+processCount+' (P'+processCount+')</td>';
+    processName.innerHTML = '<td id="realName">Process' + processCount + ' (P' + processCount + ')</td>';
     at.innerHTML = '<td id="realAt"><input type="text" name="arrivalTime" required size="10"></td>';
     bt.innerHTML = '<td id="realBt"><input type="text" name="burstTime" required size="10"></td>';
 
@@ -21,9 +21,9 @@ function addProcessor() {
 
     setProcessInfo();
 
-    if(processCount === 19) {
+    if (processCount === 19) {
         const btn = document.getElementById('plus');
-        if(btn.style.display !== 'none') {
+        if (btn.style.display !== 'none') {
             btn.style.display = 'none';
         }
     }
@@ -48,14 +48,14 @@ function changeColor(num) {
     let processId = 'core' + num;
     let changeButton = document.getElementById(processId);
 
-    let check = checkList[num-1] % 3;
-    if(check === 0){
+    let check = checkList[num - 1] % 3;
+    if (check === 0) {
         changeButton.style.backgroundColor = "#FFFFFF";
         changeButton.style.color = "#62C184";
         changeButton.style.borderColor = "#62C184";
         changeButton.innerText = "PCORE";
     }
-    else if(check === 1){
+    else if (check === 1) {
         changeButton.style.backgroundColor = "#62C184";
         changeButton.style.color = "#FFFFFF";
         changeButton.innerText = "ECORE";
@@ -67,7 +67,7 @@ function changeColor(num) {
 
     setCoreInfo(check);
 
-    checkList[num-1] += 1;
+    checkList[num - 1] += 1;
     // console.log(checkList[num-1]);
 }
 
@@ -77,13 +77,13 @@ function changeColor(num) {
 function algorithmExplain(e) {
     const text = e.options[e.selectedIndex].text;
 
-    if(text === 'RR (Round Robin)') {
+    if (text === 'RR (Round Robin)') {
         document.getElementById('explainText1').innerText = "RR 설명이지롱~";
     }
-    else if(text === 'FCFS (First Come First Service)') {
+    else if (text === 'FCFS (First Come First Service)') {
         document.getElementById('explainText1').innerText = "FCFS 설명이지롱~";
     }
-    else if(text === 'SPN (The Shortest Process Next)') {
+    else if (text === 'SPN (The Shortest Process Next)') {
         document.getElementById('explainText1').innerText = "SPN 설명이지롱~";
     }
     else {
@@ -99,11 +99,11 @@ function algorithmExplain(e) {
 function algorithm(e) {
     const text = e.options[e.selectedIndex].text;
 
-    if(text === 'RR (Round Robin)' || text === 'MyAlgorithm' ) {
-        document.getElementById("RR").style.visibility ='visible';
+    if (text === 'RR (Round Robin)' || text === 'MyAlgorithm') {
+        document.getElementById("RR").style.visibility = 'visible';
     }
     else {
-        document.getElementById("RR").style.visibility ='hidden';
+        document.getElementById("RR").style.visibility = 'hidden';
     }
 }
 
@@ -121,15 +121,15 @@ function setProcessInfo() {
 let PCoreCnt = 0;
 let ECoreCnt = 0;
 function setCoreInfo(check) {
-    const PCoreText =  document.getElementsByClassName('PCoreCnt')[0];
+    const PCoreText = document.getElementsByClassName('PCoreCnt')[0];
     const ECoreText = document.getElementsByClassName('ECoreCnt')[0];
 
     // P->E
-    if(check === 0) {
+    if (check === 0) {
         PCoreText.innerText = ++PCoreCnt;
     }
     //off -> P
-    else if(check === 1) {
+    else if (check === 1) {
         PCoreText.innerText = --PCoreCnt;
         ECoreText.innerText = ++ECoreCnt;
     }

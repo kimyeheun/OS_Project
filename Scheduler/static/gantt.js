@@ -11,11 +11,11 @@ $(document).ready(function () {
         var ecoreCnt = 2;
         var cores = ["Pcore1", "Pcore2", "Ecore1", "Ecore2"];
 
-        var endTime = 13;
+        var endTime = 19;
         var processCnt = 6;
 
         var colors = []
-        for (var i = 1; i <= processCnt; i++) {
+        for (var i = 0; i <= processCnt; i++) {
             colors.push(getRandColor());
         }
         // 각 시간당 각 프로세서에서 어떤 프로세스가 동작하는가
@@ -32,7 +32,13 @@ $(document).ready(function () {
             [5, 6, 3, 4],
             [0, 6, 3, 4],
             [0, 6, 3, 0],
-            [0, 6, 0, 0]];
+            [4, 6, 0, 0],
+            [4, 6, 0, 0],
+            [0, 6, 0, 0],
+            [0, 6, 0, 0],
+            [0, 6, 0, 0],
+            [0, 6, 0, 0],
+            [0, 6, 0, 0],];
 
         // 간트차트로 쓰일 테이블 생성
         var ganttTable = $("<table id='ganttTable'>");
@@ -44,7 +50,8 @@ $(document).ready(function () {
             else timeRow.append("<th class='timeStamp' id='timeStamp'>" + i + "</th>");
         }
         ganttTable.append(timeRow);
-
+        
+        // 칠하기
         for (var i = 0; i < processorCnt; i++) {
             var col = $("<tr class='tableCol' id='tableCol'>");
             col.append("<td class='innerHeader' id='innerHeader'>" + cores[i] + "</td>");

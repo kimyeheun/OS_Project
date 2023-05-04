@@ -7,6 +7,8 @@
     <title>Process Simulator</title>
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <script src="{% static 'style.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javaScript" src="{% static 'performance.js' %}"></script>
 </head>
 
 <body>
@@ -166,25 +168,14 @@
         <!-- 오른쪽 -->
         <div class="rightPart" id="rightPart">
             <div class="rightUpPart" id="rightUpContainer">
-                <div class="performance" id="performance" style="width:100%">
+                <div class="performance" id="performance">
                     <!-- Process 인덱스 부분-->
                     <div class="perform">
-                        <div id="perform">
+                        <div class="performBar" id="performBar">
                             Performance
                         </div>
                         <div id="processorPerforms">
-                            <button id="processorPerformOne">
-                                Processor 1
-                            </button>
-                            <button id="processorPerformOne">
-                                Processor 2
-                            </button>
-                            <button id="processorPerformOne">
-                                Processor 3
-                            </button>
-                            <button id="processorPerformOne">
-                                Processor 4
-                            </button>
+                            <!-- js로 삽입 -->
                         </div>
                     </div>
                 </div>
@@ -192,8 +183,10 @@
                 <!-- 이미지 버튼으로 만들기 -->
                 <div class="download" id="dowalnload">
                     <!-- <button type="button" class="downloadBt" id="downloadBt"><img src="{% static 'Download.png' %}" alt="Download"></button> -->
-                    <button class="downloadBt" id="downloadBt"><img src="{% static 'Download.png' %}" alt="Download"></button>
-                    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script> <!-- 스크린샷 저장을 위한 라이브러리-->
+                    <button class="downloadBt" id="downloadBt"><img src="{% static 'Download.png' %}"
+                            alt="Download"></button>
+                    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+                    <!-- 스크린샷 저장을 위한 라이브러리-->
                     <script type="text/javaScript" src="{% static 'screenshot.js' %}"></script>
                     <!-- <img src="{% static 'Download.png' %}" alt="Download" id="downloadIcon"> -->
                     <!-- <button id="downloadButton">
