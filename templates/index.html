@@ -190,8 +190,12 @@
                 </div>
                 <!-- 다운로드 버튼 -->
                 <!-- 이미지 버튼으로 만들기 -->
-                <div class="download" id="download">
-                    <img src="{% static 'Download.png' %}" alt="Download" id="downloadIcon">
+                <div class="download" id="dowalnload">
+                    <!-- <button type="button" class="downloadBt" id="downloadBt"><img src="{% static 'Download.png' %}" alt="Download"></button> -->
+                    <button class="downloadBt" id="downloadBt"><img src="{% static 'Download.png' %}" alt="Download"></button>
+                    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script> <!-- 스크린샷 저장을 위한 라이브러리-->
+                    <script type="text/javaScript" src="{% static 'screenshot.js' %}"></script>
+                    <!-- <img src="{% static 'Download.png' %}" alt="Download" id="downloadIcon"> -->
                     <!-- <button id="downloadButton">
                 Download
             </button> -->

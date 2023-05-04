@@ -32,3 +32,5 @@ This project is made for the **Operating Systems** course at the Korea Universit
 
 ### Tools
 <img src="https://img.shields.io/badge/PyCharm-000000?style=flat&logo=PyCharm&logoColor=white"/> <img src="https://img.shields.io/badge/Visual Studio Code-007ACC?style=flat&logo=visualstudiocode&logoColor=white"/> <img src="https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white"/> <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white"/>
+
+<!-- 아이콘은 여기서 https://simpleicons.org/ -->

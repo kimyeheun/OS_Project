@@ -343,8 +343,6 @@ RR
 }
 
 
-
-
 /* 다음 페이지 */
 #chartScreen {
     /* 화면 전체크기로 지정 */
@@ -399,7 +397,7 @@ RR
     height: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: left;
+    justify-content:space-between;
 }
 
 
@@ -409,7 +407,7 @@ RR
     display: flex;
     flex-direction: column;
     /* margin-top : 70px; */
-    margin-right: 0px;
+    margin-right: 10px;
     border: 10px solid #F8DE75;
     border-radius: 15px;
     text-align: center;
@@ -449,13 +447,13 @@ RR
 
 #download {
     /* padding-top:70px; */
-    padding-left: 8px;
+    /* padding-left: 8px; */
     float: right;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 15%;
-    height: 100%;
+    height: 15%;
 }
 
 #download>#downloadIcon {
@@ -470,6 +468,30 @@ RR
     width: 100%;
     background: #EA315A;
     color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+#downloadBt {
+    width: 60pt;
+    /* height: 60%; */
+    background: #EA315A;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    /* background-image: url("../images/download.png"); */
+}
+
+#downloadBt img{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+#downloadBt:hover {
+    width: 60pt;
+    background: darkred;
+    color:white;
     border: none;
     border-radius: 15px;
 }
