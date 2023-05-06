@@ -12,7 +12,7 @@ This project is made for the **Operating Systems** course at the Korea Universit
   - [<img src="https://img.shields.io/badge/garamkim83-181717?style=flat&logo=github&logoColor=white"/>](https://github.com/garamkim83)
 * 김예은 *Kim Yeeun*
   - 컴퓨터공학부 *Computer Science and Engineering* - 21학번
-  - [<img src="https://img.shields.io/badge/kimyeheun-181717?style=flat&logo=github&logoColor=white"/>]()
+  - [<img src="https://img.shields.io/badge/kimyeheun-181717?style=flat&logo=github&logoColor=white"/>](https://github.com/kimyeheun)
 * 이채린 (Lee Chaerin)
   - 컴퓨터공학부 *Computer Science and Engineering* - 20학번
   - [<img src="https://img.shields.io/badge/깃허브아이디-181717?style=flat&logo=github&logoColor=white"/>]()
