@@ -1,23 +1,23 @@
 $(document).ready(function () {
-    var numProcessors = 4;
+    let numProcessors = 4;
     // 몇 W 사용
-    var pw = [2, 2, 2, 2];
+    let pw = [2, 2, 2, 2];
     // 몇 % 사용
-    var pper = [2, 2, 2, 2];
+    let pper = [2, 2, 2, 2];
 
-    for (var i = 0; i < numProcessors; i++) {
-        var performaneBubble = document.createElement("div");
+    for (let i = 0; i < numProcessors; i++) {
+        let performaneBubble = document.createElement("div");
         performaneBubble.setAttribute("class", "performanceBubble");
         performaneBubble.setAttribute("id", "performanceBubble");
 
-        var processorDiv = document.createElement("div");
+        let processorDiv = document.createElement("div");
         processorDiv.setAttribute("class", "processorPerformOne");
         processorDiv.setAttribute("id", "processorPerformOne");
         processorDiv.innerHTML = "Processor " + (i+1);
         processorDiv.setAttribute("style", "font-size: 25pt;");
 
         // 새로운 테이블 엘리먼트 생성
-        var table = document.createElement("table");
+        let table = document.createElement("table");
         table.setAttribute("class", "newTable");
 
         var tr = document.createElement("tr");

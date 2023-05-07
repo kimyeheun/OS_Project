@@ -1,0 +1,220 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- 전체 화면 삼분할 -->
+<div class="firstPage" id = "totalScreen" style="--bs-columns: 12;" >
+    <!--왼쪽 구역 -->
+    <div class="g-col-6" id = "process">
+        <table>
+            <tr class= "process" id = "processTable" >
+                <th id ="name" style = "width: 50%">Process Name</th>
+                <th id="at" style = "width: 33%">AT</th>
+                <th id="bt" style = "width: 43%">BT</th>
+            </tr>
+            <tr id = "processOne" class = "process-form">
+                {% for form in processAll %}
+                    <td id="processNAME" style="width:30%">{{ form.Process }} </td>
+                    <td id="processAT">{{ form.AT }}</td>
+                    <td id="processBT">{{ form.BT }}</td>
+                {% endfor %}
+            </tr>
+        </table>
+        {# 버튼이 있어야 js에서 오류가 안남 -> 있지만, 안보이게 설정 #}
+        <button id = "plus" type = "button" style = "display: none"> + </button>
+{#        <button id = "processSubmit" type="submit" name="add_process" value = "add_process"> Submit! </button>#}
+    </div>
+
+    <!--가운데 구역 -->
+    <div class="g-col-5">
+        <div class="processCore" id = "core&algorithm" style = "width:100%">
+            <!-- Process 인덱스 부분-->
+            <div class="Core">
+                <div id="Core">
+                    Core
+                </div>
+                <div id="PCCore">
+                    <div id="PCoreInfo" style = "display: none">{{ PCoreAll | length }}</div>
+                    <div id="ECoreInfo" style = "display: none">{{ ECoreAll | length }}</div>
+                    <div id = "PCore">
+                        <button class="CoreType" id="core1">
+                            OFF
+                        </button>
+                        <button class="CoreType" id="core2">
+                            OFF
+                        </button>
+                    </div>
+                    <div id = "CCore">
+                        <button class="CoreType" id="core3">
+                            OFF
+                        </button>
+                        <button class="CoreType" id="core4">
+                            OFF
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--알고리즘 부분-->
+        <form id = "AlgorithmList" method="POST">
+            <div id = "AlgorithmInfo">
+                {{ SimulatorInfo.Algorithm }}
+            </div>
+            <div id = "RR">
+                <label id = "LabelRR" style = "display: inline"> RR (δ) : </label>
+                <div id = "quantum">
+                    {{ SimulatorInfo.quantum }}
+                </div>
+            </div>
+{#            <button id = "algorithmSubmit" type="submit" name="add_algorithm" value = "add_algorithm"> Submit! </button>#}
+        </form>
+
+        <!--시뮬레이터 로그 부분-->
+        <div class = "simulatorTable">
+            <table class= "simulator" style="width:100%;">
+                <tr>
+                    <th id ="Log"> Simulation Log</th>
+                </tr>
+                <tbody id = "Logs">
+                    <tr id = "logOne">
+                        <td id="logName">
+                            {% for simulator in simulatorLog %}
+                                <button id = "logButton" onclick="window.location.href='/{{ simulator.name }}/'">
+                                    Simulation {{ simulator.name }}
+                                </button>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <form id="current-simulator"  method="POST">
+            <div id="current">
+                Processor : {{ processAll | length }} |
+                P Core : {{ PCoreAll | length }}  |
+                E Core : {{ ECoreAll | length }}
+            </div>
+            <button id = "simulatorInfo" type="submit" name="simulator_info" value = "simulator_info" style = "width: 30px; height: 30px"> go! </button>
+        </form>
+    </div>
+
+    <!-- 왼쪽 구역-->
+    <div class="g-col-1" id="rightContainer">
+        <div id = "titleImage">
+            {% load static %}
+            <img src="{% static 'img/Title.png' %}" alt="Title">
+        </div>
+        <div id = "goAndImage" >
+            <div id = "go">
+                <button id = "backButton" onclick="window.location.href='/'">
+                    NEW!
+                </button>
+            </div>
+            <div id="team_name">
+                BOSS
+            </div>
+        </div>
+        <!--explain 부분 -->
+        <div class="algorithmExplain" id = "algorithmExplain" style = "width:100%">
+            <!-- Process 인덱스 부분-->
+            <div class="explain">
+                <div id="explain">
+                    Explain
+                </div>
+                <div id="explainText">
+                    <div id = "explainText1">
+                        {{ SimulatorInfo.Algorithm }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 왼쪽 -->
+<div class="nextPage" id="chartScreen" style="--bs-columns: 12;">
+    <!-- 왼쪽 구역 -->
+    <div class="g-col-6" id="leftPart">
+        <table>
+            <tr class = "process" id="processTable2">
+                <th id="name2" style = "width: 30%">Process Name</th>
+                <th id="at2" style = "width: 10%" >AT</th>
+                <th id="bt2" style = "width: 10%">BT</th>
+                <th id="wt2" style = "width: 10%">WT</th>
+                <th id="tt2" style = "width: 10%">TT</th>
+                <th id="ntt2" style = "width: 10%">NTT</th>
+            </tr>
+            <tr id = "processOne2" class = "process-form">
+                {% for form in processAll %}
+                    <td id="processNAME2" style="width:30%">{{ form.Process }} </td>
+                    <td id="processAT2">{{ form.AT }}</td>
+                    <td id="processBT2">{{ form.BT }}</td>
+                    <td id="processWT2">{{ form.WT }}</td>
+                    <td id="processTT2">{{ form.TT }}</td>
+                    <td id="processNTT2">{{ form.NTT }}</td>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+
+    <!-- 오른쪽 -->
+    <div id="rightPart">
+        <div class="rightUpPart" >
+            <!-- Performance -->
+            <div style = "display: flex">
+            <div class="performance" id="performance">
+                <div class= "simulator">
+                    <div id ="Performance"> Performance </div>
+                    <div id = "Perform">
+                        <div id = "Performances">
+                            {% for pcore in PCoreAll %}
+                                <div class = "PerformanceInfo">
+                                    P Core {{ pcore.name }}
+                                    <div style="font-size: 80%">
+                                        {{ pcore.powerConsumption }} W &nbsp; &nbsp;
+                                        {{ pcore.powerEfficiency }} %
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            {% for ecore in ECoreAll %}
+                                <div class = "PerformanceInfo">
+                                    E Core {{ ecore.name }}
+                                    <div style="font-size: 80%">
+                                        {{ ecore.powerConsumption }} W &nbsp; &nbsp;
+                                        {{ ecore.powerEfficiency }} %
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 다운로드 버튼 -->
+            <!-- 이미지 버튼으로 만들기 -->
+            <div style = "width: 20%;">
+                <div class="download" id="download" style="text-align: right; padding-left: 42%">
+                    <button class="downloadBt" id="downloadBt">
+                        <img src="{% static 'img/download.png' %}" alt="Download">
+                    </button>
+                </div>
+                <div id="team_name" style="padding-left: 10px; justify-content: center">
+                    BOSS
+                </div>
+            </div>
+            </div>
+        </div>
+            <!--간트 차트 -->
+        <button id = "gantt" type="button" style = "display: none"> gantt </button>
+            <div class="ganttChartBar" id="ganttChartBar">
+                <div class="ganttChart" id="ganttChart">
+                    Gantt Chart
+                    <div class="ganttChartBase" id="ganttChartBase">
+                        <div id="baseTable"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 다음 페이지 -->
+{% endblock %}

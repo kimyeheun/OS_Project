@@ -1,0 +1,26 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simulator - BOSS</title>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://unpkg.com/htmx.org@1.5.0"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="{% static 'js/style.js' %}"></script>
+    <script type="text/javaScript" src="{% static 'js/gantt.js'%}"></script>
+    <script type="text/javaScript" src="{% static 'js/performance.js' %}"></script>
+    <script type="text/javaScript" src="{% static 'js/screenshot.js' %}"></script>
+
+    <link rel = "stylesheet" href="{% static 'css/style.css' %}?after">
+</head>
+<body>
+    {%  block content %}
+
+    {% endblock %}
+</body>
+</html>

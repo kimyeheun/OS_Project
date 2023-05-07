@@ -1,233 +1,142 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Process Simulator</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-    <script src="{% static 'style.js' %}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javaScript" src="{% static 'performance.js' %}"></script>
-</head>
-
-<body>
-    <!-- 전체 화면 삼분할 -->
-    <div class="main" id="totalScreen" style="--bs-columns: 12;">
-        <!--왼쪽 구역 -->
-        <div class="g-col-6" id="process">
-            <table class="process" id="processTable" style="width:100%; box-sizing: content-box">
-                <tr>
-                    <th id="name">Process Name</th>
-                    <th id="at">AT</th>
-                    <th id="bt">BT</th>
-                </tr>
-                <tbody id="processOne">
-                    <tr id="process1">
-                        <td id="realName">Process1 (P1)</td>
-                        <td id="realAt">
-                            <input type="text" name="arrivalTime" required size="10">
-                        </td>
-                        <td id="realBt">
-                            <input type="text" name="burstTime" required size="10">
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <button class="plusProcessor" id="plus" onclick='addProcessor()'>
-                +
-            </button>
+{% block content %}
+<!-- 전체 화면 삼분할 -->
+<div class="firstPage" id = "totalScreen" style="--bs-columns: 12;" >
+    <!--왼쪽 구역 -->
+    <div class="g-col-6" id = "process">
+        <div class= "process" id = "processTable" >
+            <div id ="name" style = "width: 50%">Process Name</div>
+            <div id="at" style = "width: 33%">AT</div>
+            <div id="bt" style = "width: 43%">BT</div>
         </div>
+        <div id = "processOne">
+            <form id = "form-container" method="POST">
+                {% csrf_token %}
+                {{ process_formset.management_form }}
+                {% for form in process_formset %}
+                    <div class = "process-form">
+                        <span id="processName">Process 1</span> {{ form }}
+                    </div>
+                {% endfor %}
+                <button id = "plus" type = "button"> + </button>
+                <button id = "processSubmit" type="submit" name="add_process" value = "add_process"> Submit! </button>
+            </form>
+        </div>
+    </div>
 
-        <!--가운데 구역 -->
-        <div class="g-col-5">
-            <div class="processCore" id="core&algorithm" style="width:100%">
-                <!-- Process 인덱스 부분-->
-                <div class="Core">
+    <!--가운데 구역 -->
+    <div class="g-col-5">
+        <div class="processCore" id = "core&algorithm" style = "width:100%">
+            <!-- Process 인덱스 부분-->
+            <div class="Core">
                     <div id="Core">
                         Core
                     </div>
-                    <div id="PCCore">
-                        <div id="PCore">
-                            <button class="CoreType" id="core1" onclick="changeColor(1)">
-                                OFF
-                            </button>
-                            <button class="CoreType" id="core2" onclick="changeColor(2)">
-                                OFF
-                            </button>
-                        </div>
-
-                        <div id="CCore">
-                            <button class="CoreType" id="core3" onclick="changeColor(3)">
-                                OFF
-                            </button>
-                            <button class="CoreType" id="core4" onclick="changeColor(4)">
-                                OFF
-                            </button>
-                        </div>
+                <div id="PCCore">
+                    {# showLog.html의 js 때문에 있는 코드 - 보이지 않음 #}
+                    <div id="PCoreInfo" style = "display: none">0</div>
+                    <div id="ECoreInfo" style = "display: none">0</div>
+                    <div id = "PCore">
+                        <button class="CoreType" id="core1" onclick="changeColor(1)" >
+                            OFF
+                        </button>
+                        <button class="CoreType" id="core2" onclick="changeColor(2)">
+                            OFF
+                        </button>
                     </div>
-                </div>
-            </div>
-            <!--알고리즘 부분-->
-            <div id="Algorithm">
-                <select id="Algorithms" name="Algorithm" class="dropdown-menu" onchange="algorithmExplain(this)">
-                    <option value="select">MyAlgorithm</option>
-                    <option value="FCFS">FCFS (First Come First Service)</option>
-                    <option value="RR">RR (Round Robin)</option>
-                    <option value="SPN">SPN (The Shortest Process Next)</option>
-                </select>
-            </div>
-            <div id="RR">
-                <div id="LabelRR"> RR (δ) : </div>
-                <label>
-                    <input type="text" name="burstTime" required size="10">
-                </label>
-            </div>
-
-            <!--시뮬레이터 로그 부분-->
-            <div class="simulatorTable">
-                <table class="simulator" style="width:100%;">
-                    <tr>
-                        <th id="Log" onclick='addSimulator()'> Simulator Log</th>
-                    </tr>
-                    <tbody id="Logs">
-                        <tr id="logOne">
-                            <td id="logName">
-                                <!--                            <button id = "logButton"> hi </button>-->
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div id="current-simulator">
-                <div id="current">
-                    Processor : <span class="processCnt">0</span> | P Core : <span class="PCoreCnt">0</span> | E Core :
-                    <span class="ECoreCnt">0</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- 왼쪽 구역-->
-        <div class="g-col-1" id="rightContainer">
-            <div id="titleImage">
-                {% load static %}
-                <img src="{% static 'Title.png' %}" alt="Title">
-            </div>
-            <div id="goAndImage">
-                <div id="go">
-                    <button id="goButton">GO!</button>
-                </div>
-                <div id="team_name">
-                    BOSS
-                </div>
-            </div>
-            <!--explain 부분 -->
-            <div class="algorithmExplain" id="algorithmExplain" style="width:100%">
-                <!-- Process 인덱스 부분-->
-                <div class="explain">
-                    <div id="explain">
-                        Explain
-                    </div>
-                    <div id="explainText">
-                        <div id="explainText1">
-                            MyAlgorithm 설명이지롱~
-                        </div>
+                    <div id = "CCore">
+                        <button class="CoreType" id="core3" onclick="changeColor(3)">
+                            OFF
+                        </button>
+                        <button class="CoreType" id="core4" onclick="changeColor(4)">
+                            OFF
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- 다음 페이지 -->
-    <div class="nextPage" id="chartScreen" style="--bs-columns: 12;">
-        <!-- 왼쪽 -->
-        <div class="leftPart" id="leftPart">
-            <table class="process" id="nextPgProcessTable" style="width:100%; box-sizing: content-box">
+        <!--알고리즘 부분-->
+        <form id = "AlgorithmList" method="POST">
+            <label for="Algorithm"></label>
+            <select id = "Algorithm" name = "Algorithm" class="dropdown-menu" onchange="algorithmExplain(this)">
+                <option value="MyAlgorithm" selected>MyAlgorithm</option>
+                <option value="FCFS">FCFS (First Come First Service)</option>
+                <option value="RR">RR (Round Robin)</option>
+                <option value="SPN">SPN (Shortest Process Next)</option>
+                <option value="SRTN">SRTN (Shortest Remaining Time Next)</option>
+                <option value="HRRN">HRRN (Highest Response Ratio Next)</option>
+            </select>
+
+            <div id = "RR">
+                {% csrf_token %}
+                <label id = "LabelRR" style = "display: inline"> RR (δ) : </label>
+                <input type="text" id = "quantum" name="quantum" required size="10">
+            </div>
+            <button id = "algorithmSubmit" type="submit" name="add_algorithm" value = "add_algorithm"> Submit! </button>
+        </form>
+
+        <!--시뮬레이터 로그 부분-->
+        <div class = "simulatorTable">
+            <table class= "simulator" style="width:100%;">
                 <tr>
-                    <th id="name">Process Name</th>
-                    <th id="at">AT</th>
-                    <th id="bt">BT</th>
+                    <th id ="Log"> Simulation Log</th>
                 </tr>
-                <tbody id="processOne">
-                    <tr id="process1">
-                        <td id="realName">Process1 (P1)</td>
-                        <td id="realAt">
-                            <input type="text" name="arrivalTime" required size="10">
-                        </td>
-                        <td id="realBt">
-                            <input type="text" name="burstTime" required size="10">
+                <tbody id = "Logs">
+                    <tr id = "logOne">
+                        <td id="logName">
+                            {% for simulator in simulatorLog %}
+                                <button id = "logButton" onclick="window.location.href='/{{ simulator.name }}/'">
+                                    Simulation {{ simulator.name }}
+                                </button>
+                            {% endfor %}
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <button class="plusProcessor" id="plus" onclick='addProcessor()'>
-                +
-            </button>
         </div>
 
-        <!-- 오른쪽 -->
-        <div class="rightPart" id="rightPart">
-            <div class="rightUpPart" id="rightUpContainer">
-                <div class="performance" id="performance">
-                    <!-- Process 인덱스 부분-->
-                    <div class="perform">
-                        <div class="performBar" id="performBar">
-                            Performance
-                        </div>
-                        <div id="processorPerforms">
-                            <!-- js로 삽입 -->
-                        </div>
-                    </div>
-                </div>
-                <!-- 다운로드 버튼 -->
-                <!-- 이미지 버튼으로 만들기 -->
-                <div class="download" id="dowalnload">
-                    <!-- <button type="button" class="downloadBt" id="downloadBt"><img src="{% static 'Download.png' %}" alt="Download"></button> -->
-                    <button class="downloadBt" id="downloadBt"><img src="{% static 'Download.png' %}"
-                            alt="Download"></button>
-                    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-                    <!-- 스크린샷 저장을 위한 라이브러리-->
-                    <script type="text/javaScript" src="{% static 'screenshot.js' %}"></script>
-                    <!-- <img src="{% static 'Download.png' %}" alt="Download" id="downloadIcon"> -->
-                    <!-- <button id="downloadButton">
-                Download
-            </button> -->
-                </div>
+        <form id="current-simulator"  method="POST">
+            <div id="current">
+                {% csrf_token %}
+                Processor : <input name="processCnt" class="processCnt" value = "1" style="width:27px" readonly> |
+                P Core : <input name="PCoreCnt" class="PCoreCnt" value = "0" readonly>  |
+                E Core : <input name="ECoreCnt" class="ECoreCnt" value = "0" readonly>
             </div>
-            <!-- 간트 차트 -->
-            <!-- 
-        [ 백엔드로부터 받아올 것 ]
-        1. 프로세서 수
-        2. 프로세스 수
-        3. Pcore Ecore 수
-        4. 마지막으로 끝나는 프로세스의 종료 시간
-        5. 각 시간마다 실행되는 프로세스의 이름(1초 간격)
-     -->
-            <!-- 
-        [ 수정해야 할 것 ]
-        1. 테이블 크기 고정, 가로 스크롤바 추가
-        2. 각 시간당 테이블 가로 크기
-        3. 간트 차트 높이 키우기
-        4. 간트차트 위치 재배치
-      -->
-            <div class="ganttChartBar" id="ganttChartBar">
-                <div class="ganttChart" id="ganttChart">
-                    Gantt Chart
-                    <!-- <div id="ganttChartTitle">
-                </div> -->
-                    <div class="ganttChartBase" id="ganttChartBase">
-                        <!-- <label for="processCnt">Enter the number of processes:</label> -->
-                        <!-- <input type="number" id="processCnt"><br><br> -->
-                        <!-- <button id="createChartBt">Create Chart</button><br><br> -->
-                        <div id="baseTable"></div>
-                        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                        <script type="text/javaScript" src="{% static 'gantt.js'%}"></script>
+            <button id = "simulatorInfo" type="submit" name="simulator_info" value = "simulator_info" style = "width: 30px; height: 30px"> go! </button>
+        </form>
+    </div>
+
+    <!-- 오른쪽 구역-->
+    <div class="g-col-1" id="rightContainer">
+        <div id = "titleImage">
+            {% load static %}
+            <img src="{% static 'img/Title.png' %}" alt="Title">
+            <button style="display: none" id = "downloadBt"></button>
+        </div>
+        <div id = "goAndImage" >
+            <div id = "go">
+                <button id = "goButton" type = "button" name="Go" value = "Go">GO!</button>
+            </div>
+            <div id="team_name">
+                BOSS
+            </div>
+        </div>
+        <!--explain 부분 -->
+        <div class="algorithmExplain" id = "algorithmExplain" style = "width:100%">
+            <!-- Process 인덱스 부분-->
+            <div class="explain">
+                <div id="explain">
+                    Explain
+                </div>
+                <div id="explainText">
+                    <div id = "explainText1">
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-</body>
-
-</html>
+{% endblock %}
