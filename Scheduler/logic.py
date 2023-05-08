@@ -8,3 +8,17 @@ def doAlgorithm(processCnt, quantum, originalInfo, PCoreCnt, ECoreCnt, algorithm
     if algorithm == 'RR':
         return doRR(processCnt, quantum, originalInfo, PCoreCnt, ECoreCnt)
 
+    # todo: 알고리즘 연결 하기
+    # elif algorithm == 'FCFS':
+    #     # return doFCFS(processCnt, quantum, originalInfo, PCoreCnt, ECoreCnt)
+    # elif algorithm == 'SPN':
+    #
+    # elif algorithm == 'SRTN':
+    #
+    # elif algorithm == 'HRRN':
+    #
+    # else: # MyAlgorithm
+
+
+
+

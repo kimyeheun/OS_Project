@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import modelformset_factory
 
-from .models import Process, Simulator, PCore, ECore
+from .models import Process, Simulator, PCore, ECore, GanttChart
 
 
 # 프로세스 AT,BT 받는 폼
@@ -48,3 +48,9 @@ class ECoreForm(forms.ModelForm):
     class Meta:
         model = ECore
         fields = ['powerConsumption', 'powerEfficiency']
+
+
+# class GanttChartForm(forms.ModelForm):
+#     class Meta:
+#         model = GanttChart
+#         fields = ['timeTable', 'finishTime']

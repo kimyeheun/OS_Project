@@ -205,6 +205,16 @@
             </div>
         </div>
             <!--간트 차트 -->
+        <div id = "ganttInfo-timeTable" style = "display:none;">
+            {% for gantt in GanttChartInfo %}
+                {{ gantt.timeTable }}
+            {% endfor %}
+        </div>
+        <div id = "ganttInfo-finishTime" style = "display:none;">
+            {% for gantt in GanttChartInfo %}
+                {{ gantt.finishTime }}
+            {% endfor %}
+        </div>
         <button id = "gantt" type="button" style = "display: none"> gantt </button>
             <div class="ganttChartBar" id="ganttChartBar">
                 <div class="ganttChart" id="ganttChart">

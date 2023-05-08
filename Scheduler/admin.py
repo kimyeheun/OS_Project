@@ -1,7 +1,7 @@
 from django.contrib import admin
 #
 # # Register your models here.
-from Scheduler.models import Process, Simulator, PCore, ECore
+from Scheduler.models import Process, Simulator, PCore, ECore, GanttChart
 
 
 class ProcessAdmin(admin.TabularInline):
@@ -12,3 +12,5 @@ admin.site.register(Process)
 admin.site.register(Simulator)
 admin.site.register(PCore)
 admin.site.register(ECore)
+admin.site.register(GanttChart)
+

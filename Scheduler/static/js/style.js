@@ -47,8 +47,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 
 function algorithmExplainShow(text) {
-    console.log(text);
-
     if(text === 'RR (Round Robin)' || text === 'RR') {
         document.getElementById('explainText1').innerText =
             "[RR(Round-Robin)]\n 먼저 도착한 프로세스를 먼저 처리 해주되, 자원 사용 제한 시간(time quantum)이 있는 스케줄링 알고리즘\n\n" +
@@ -89,13 +87,13 @@ function algorithmExplainShow(text) {
             "SPN의 장점을 극대화할 수 있지만 프로세스 생성 시 총 실행 시간 예측이 필요하고, 잔여 실행을 계속 추적해야 하므로 overhead가 큼\n\n";
             // "Context switching overhead가 발생합니다.\n";
     }
-    else {
+    else if(text === 'MyAlgorithm') {
         document.getElementById('explainText1').innerText = "MyAlgorithm 설명이지롱~";
     }
+    else {
+        document.getElementById('explainText1').innerText = "";
+    }
 }
-
-
-
 
 
 /**
@@ -220,26 +218,35 @@ $(document).ready(function() {
       url: '',
       type: 'POST',
       data: formData,
+      async: false,
       contentType: false,
       processData: false,
       success: function(response) {
-          window.location.href = `http://127.0.0.1:8000${response}`
+          window.location.href = `http://127.0.0.1:8000${response}`;
       },
-      error: function(response) {
-        console.log('error');
+      error: function(xhr, status, error) {
+          let errorMsg;
+          if (xhr.responseText.length > 30)
+              errorMsg = "간트 차트를 불러오는 과정에서 문제가 발생했습니다.\n";
+          else errorMsg = xhr.responseText+'\n';
+
+          alert(errorMsg + '다시 만들어 주세요.');
+          window.location.href = 'http://127.0.0.1:8000';
       }
     });
   });
 });
 
-
 /**
  * Input Field Valid Check - Only Number
  */
+function handleInputChange() {
+    this.value = this.value.replace(/[^0-9]/g, '');
+}
+
 $(document).ready(function() {
-    $("input[type='text']").on('input', function() {
-        this.value = this.value.replace(/[^0-9]/g, '');
-    });
+    $("input[type='text']").on('input', handleInputChange);
+    $(document).on('input', "input[type='text']", handleInputChange); //새로 추가 되는 input 태그
 
     $.ajaxSetup({
         beforeSend: function(xhr, settings) {
@@ -296,15 +303,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 /**
- * scroll down
+ * scroll down & draw Gantt Chart
  */
 window.onload = function () {
     let target = document.getElementById("chartScreen");
     let btn = document.getElementById('gantt');
-    console.log(target);
     if (target !== null) {
         target.scrollIntoView({ behavior: 'smooth' });
         btn.click();
     }
 }
+
 

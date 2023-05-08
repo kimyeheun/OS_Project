@@ -49,3 +49,12 @@ class ECore(models.Model):
 
     def __str__(self):
         return str(self.Simulator.name) + '-ECore' + str(self.name)
+
+
+class GanttChart(models.Model):
+    Simulator = models.ForeignKey('Simulator', on_delete=models.CASCADE, default=1)
+    timeTable = models.CharField(max_length=1000)
+    finishTime = models.IntegerField(default=0)
+
+    def __str__(self):
+        return str(self.Simulator.name) + '-GanttChart'
