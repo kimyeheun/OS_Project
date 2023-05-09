@@ -52,8 +52,6 @@ function algorithmExplainShow(text) {
             "[RR(Round-Robin)]\n 먼저 도착한 프로세스를 먼저 처리 해주되, 자원 사용 제한 시간(time quantum)이 있는 스케줄링 알고리즘\n\n" +
             "[Preemptive scheduling]\n 각각의 프로세스는 타의에 의해 할당 받은 자원을 처리 도중 빼앗길 수 있음\n\n" +
             "프로세스는 할당된 시간이 지나면 자원을 반납하게 되어 자원 독점을 방지함\n\n" +
-            // "Time quantum이 너무 큰 경우 FCFS와 유사한 기능을 수행하게되며 Time quantum이 너무 작은 경우 사용자는 모든 프로세스가 각각의 1/n 성능을 가진 프로세서 위에서 실행되는 듯한 느낌을 받지만, context switching overhead가 커지게 됨" +
-            // "따라서 적절한 time quantum을 정해야 시스템 성능을 높일 수 있습니다.\n" +
             "대화형 시스템, 시분할 시스템에 적합";
     }
     else if(text === 'FCFS (First Come First Service)' || text === 'FCFS') {
@@ -62,7 +60,6 @@ function algorithmExplainShow(text) {
             "[Non-preemptive scheduling]\n 각각의 프로세스는 할당 받은 자원을 스스로 반납할 때까지 사용 가능\n\n" +
             "Context switch overhead가 적고 자원을 효율적으로 사용할 수 있음\n\n" +
             "먼저 온 프로세스의 수행시간이 긴 경우 다른 프로세스들이 긴 대기시간을 가지게 되는 Convoy effect가 발생할 수 있어 비교적 긴 평균 응답시간을 가짐";
-            // "Batch system에는 적합하지만, Interactive system에는 부적합";
     }
     else if(text === 'SPN (Shortest Process Next)' || text === 'SPN') {
         document.getElementById('explainText1').innerText =
@@ -75,7 +72,6 @@ function algorithmExplainShow(text) {
         document.getElementById('explainText1').innerText =
             "[High Response Ratio Next]\nSPN에 Aging concepts를 적용한 스케줄링 알고리즘\n\n" +
             "[Non-preemptive scheduling]\n각각의 프로세스는 할당 받은 자원을 스스로 반납할 때까지 사용 가능\n\n" +
-            // "Aging concepts란 프로세스의 대기시간을 고려하여 기회를 주는 방법\n\n" +
             "Response Ratio {(WT+BT)/BT}가 클수록 빠른 처리 순서를 가짐\n\n" +
             "SPN의 장점과 Starvation을 방지할 수 있다는 장점이 있지만 " +
             "실행시간 예측 기법이 필요하여 overhead가 발생";
@@ -85,10 +81,18 @@ function algorithmExplainShow(text) {
             "[Shortest Remaining Time Next]\nSPN의 변형. 잔여 시간이 더 적은 프로세스가 ready 상태가 되면 선점되는 스케줄링 알고리즘\n\n" +
             "[Preemptive scheduling]\n각각의 프로세스는 타의에 의해 할당 받은 자원을 처리 도중 빼앗길 수 있음\n\n" +
             "SPN의 장점을 극대화할 수 있지만 프로세스 생성 시 총 실행 시간 예측이 필요하고, 잔여 실행을 계속 추적해야 하므로 overhead가 큼\n\n";
-            // "Context switching overhead가 발생합니다.\n";
     }
-    else if(text === 'MyAlgorithm') {
-        document.getElementById('explainText1').innerText = "MyAlgorithm 설명이지롱~";
+    else if(text === 'BOSS Algorithm') {
+        document.getElementById('explainText1').innerText =
+            "[BOSS Algorithm]\n" +
+            "\n{Core의 수가 2개 이상일 때} " +
+            "\nBT 기준으로 정렬하여 Ready Queue에 삽입" +
+            "\nECore : BT가 짧은 순서로 할당" +
+            "\nPCore : BT가 긴 순서로 할당" +
+            "\n\n{Core의 수가 1개일 때} " +
+            "\nSPN 방식 (WT를 최소화)" +
+            "\n\n* PCore만 있을 때는 BT가 가장 짧은 프로세스를 먼저 처리하여 WT의 합이 길어지는 것을 방지\n" +
+            "이처럼 Core 개수에 따라 알고리즘의 동작을 다르게 하여 효율적으로 동작하도록 함*";
     }
     else {
         document.getElementById('explainText1').innerText = "";
@@ -104,7 +108,7 @@ function algorithm(e) {
     algorithmShow(text);
 }
 function algorithmShow(text){
-    if(text === 'RR (Round Robin)' || text === 'MyAlgorithm' || text==='RR' ) {
+    if(text === 'RR (Round Robin)' || text==='RR' ) {
         document.getElementById("RR").style.visibility ='visible';
     }
     else {
@@ -315,3 +319,24 @@ window.onload = function () {
 }
 
 
+/**
+ *  show Information - How to use this Site
+ */
+document.addEventListener("DOMContentLoaded", function() {
+    let InfoBtn = document.getElementById('InfoButton');
+    let HowToUse = document.getElementById('Information');
+    let closeHowToUse = document.getElementById('closeHowToUse');
+
+    InfoBtn.onclick = function() {
+      HowToUse.style.display = 'block';
+    }
+    closeHowToUse.onclick = function() {
+      HowToUse.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        if (event.target == HowToUse) {
+            HowToUse.style.display = "none";
+        }
+    }
+});

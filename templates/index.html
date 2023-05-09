@@ -61,7 +61,7 @@
             <label for="Algorithm"></label>
             <select id = "Algorithm" name = "Algorithm" class="dropdown-menu" onchange="algorithmExplain(this)">
                 <option value="none">== Choose Algorithm ==</option>
-                <option value="MyAlgorithm">MyAlgorithm</option>
+                <option value="BOSS">BOSS Algorithm</option>
                 <option value="FCFS">FCFS (First Come First Service)</option>
                 <option value="RR">RR (Round Robin)</option>
                 <option value="SPN">SPN (Shortest Process Next)</option>
@@ -71,7 +71,7 @@
 
             <div id = "RR">
                 {% csrf_token %}
-                <label id = "LabelRR" style = "display: inline"> RR (δ) : </label>
+                <label id = "LabelRR" for="quantum" style="display: inline">  RR (δ) : </label>
                 <input type="text" id = "quantum" name="quantum" required size="10">
             </div>
             <button id = "algorithmSubmit" type="submit" name="add_algorithm" value = "add_algorithm"> Submit! </button>
@@ -119,6 +119,9 @@
             <div id = "go">
                 <button id = "goButton" type = "button" name="Go" value = "Go">GO!</button>
             </div>
+            <div id = "Info">
+                <button id = "InfoButton" type = "button" name = "Info">  ! </button>
+            </div>
             <div id="team_name">
                 BOSS
             </div>
@@ -131,13 +134,32 @@
                     Explain
                 </div>
                 <div id="explainText">
-                    <div id = "explainText1">
-
-                    </div>
+                    <div id = "explainText1"></div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!--사용 설명 팝업창-->
+    <div id="Information" style="display:none;">
+        <div id="HowToUse">
+            <span id="closeHowToUse">x</span>
+            <div> [HOW TO USE THIS WEB SITE] </div>
+            <div style = "font-size: 18px"> BOSS - Process Scheduling Simulator <br> </div>
+{#            {% load static %}#}
+            <br> <img src="{% static 'img/HowToUse.png' %}" alt="HowToUse">
+
+            <div id = "useInfo">
+                <span>&#9312;</span> 플러스 버튼으로 프로세스를 추가할 수 있습니다. <br>
+                <span>&#9313;</span> OFF 상태의 버튼을 한번 누르면 ECORE, 두 번 누르면 PCORE로 지정할 수 있습니다. <br>
+                <span>&#9314;</span> 알고리즘을 설정하고 Time quantum이 필요한 경우 입력할 수 있습니다. <br>
+                <span>&#9315;</span> GO! 버튼을 눌러 만들어진 이전의 시뮬레이션들을 다시 불러올 수 있습니다. <br>
+                <span>&#9316;</span> 알고리즘에 대한 설명을 읽어볼 수 있습니다. <br>
+                <span>&#9317;</span> GO! 버튼을 누르면 화면에 입력한 데이터를 토대로 스케쥴링이 시작됩니다.
+            </div>
+        </div>
+    </div>
+
 </div>
 
 {% endblock %}

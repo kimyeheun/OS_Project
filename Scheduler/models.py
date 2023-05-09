@@ -34,8 +34,8 @@ class Simulator(models.Model):
 class PCore(models.Model):
     Simulator = models.ForeignKey('Simulator', on_delete=models.CASCADE, default=1)
     name = models.IntegerField(default=1)
-    powerConsumption = models.DecimalField(max_digits=3, decimal_places=2)
-    powerEfficiency = models.DecimalField(max_digits=3, decimal_places=2)
+    powerConsumption = models.CharField(max_length=250)
+    powerEfficiency = models.CharField(max_length=250)
 
     def __str__(self):
         return str(self.Simulator.name) + '-PCore' + str(self.name)
@@ -44,8 +44,8 @@ class PCore(models.Model):
 class ECore(models.Model):
     Simulator = models.ForeignKey('Simulator', on_delete=models.CASCADE, default=1)
     name = models.IntegerField(default=1)
-    powerConsumption = models.DecimalField(max_digits=3, decimal_places=2)
-    powerEfficiency = models.DecimalField(max_digits=3, decimal_places=2)
+    powerConsumption = models.CharField(max_length=250)
+    powerEfficiency = models.CharField(max_length=250)
 
     def __str__(self):
         return str(self.Simulator.name) + '-ECore' + str(self.name)

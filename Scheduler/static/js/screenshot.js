@@ -1,5 +1,4 @@
 // 프로세스 스케줄링 시뮬레이터의 화면을 캡쳐하여 png로 저장
-
 document.addEventListener("DOMContentLoaded", function(event) {
 
   let downloadBt = document.getElementById("downloadBt");
@@ -7,6 +6,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
   downloadBt.addEventListener("click", function () {
     // 함께 캡쳐되지 않도록 downloadBt를 숨김
     downloadBt.style.display = "none";
+
+    let simulatorName = "Simulator_" + document.getElementById('simulatorName').innerText;
 
     // go를 누른 후 다음 화면으로 넘어갔을 때의 화면을 캡쳐
     html2canvas(document.body, {
@@ -26,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
       // a 태그: 하이퍼링크 생성, 다운로드 링크 추가
       let link = document.createElement("a");
-      link.download = "process_scheduling_performance.png";
+      link.download = simulatorName + "_Performance.png";
       link.href = image;
 
       // a 태그 클릭하여 파일 다운로드
@@ -37,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     html2canvas(document.body, {
       x: document.getElementById("leftPart").offsetLeft,
       y: document.getElementById("leftPart").offsetTop,
-      width: document.getElementById("leftPart").offsetWidth + 25,
+      width: document.getElementById("leftPart").offsetWidth + 8,
       height: document.getElementById("leftPart").offsetHeight,
     }).then(function (canvas) {
       // 캔버스를 이미지 URL로 변환
@@ -45,7 +46,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
       // a 태그: 하이퍼링크 생성, 다운로드 링크 추가
       let link = document.createElement("a");
-      link.download = "process_scheduling_process_table.png";
+
+      link.download = simulatorName + "_Process_table.png";
       link.href = image;
 
       // a 태그 클릭하여 파일 다운로드
@@ -55,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     html2canvas(document.querySelector("#ganttTable")).then(function (canvas) {
       // 이미지 데이터를 다운로드 링크로 변환
       const link = document.createElement("a");
-      link.download = "process_scheduling_process_gantt_chart.png";
+      link.download = simulatorName + "_Gantt_chart.png";
       link.href = canvas.toDataURL("image/png");
       link.click();
     });

@@ -23,7 +23,7 @@ class SimulatorForm(forms.ModelForm):
         model = Simulator
         fields = ['name', 'Algorithm', 'quantum']
         widgets = {
-            'Algorithm': forms.Select(choices=[('MyAlgorithm', 'MyAlgorithm'),
+            'Algorithm': forms.Select(choices=[('BOSSAlgorithm', 'BOSSAlgorithm'),
                                                ('FCFS', 'FCFS (First Come First Service)'),
                                                ('RR', 'RR (Round Robin)'),
                                                ('SPN', 'SPN (Shortest Process Next)'),
@@ -49,8 +49,3 @@ class ECoreForm(forms.ModelForm):
         model = ECore
         fields = ['powerConsumption', 'powerEfficiency']
 
-
-# class GanttChartForm(forms.ModelForm):
-#     class Meta:
-#         model = GanttChart
-#         fields = ['timeTable', 'finishTime']

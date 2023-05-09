@@ -228,10 +228,11 @@ RR
     width: 100%;
 }
 #RR > #LabelRR{
-    text-decoration-line: underline;
+    /*text-decoration-line: underline;*/
     text-decoration-thickness: 2px;
     float: left;
     width: 20%;
+    font-family: "Signika", serif;
 }
 #RR> input {
     background: #E2E4B2;
@@ -358,6 +359,22 @@ RR
     width:40%;
     height:90%;
 }
+#Info {
+    padding-top:8px;
+    padding-left: 25px;
+    float:left;
+    display: flex;
+    width:20%;
+    height:90%;
+}
+#team_name {
+    float:right;
+    display: flex;
+    justify-content: right;
+    font-size: 180%;
+    color: #4A59DF;
+    width:40%;
+}
 
 #go > #goButton {
     width: 100%;
@@ -366,7 +383,6 @@ RR
     border: none;
     border-radius: 15px;
 }
-
 #go > #goButton:active {
     width: 100%;
     background: darkred;
@@ -374,6 +390,19 @@ RR
     border: none;
     border-radius: 15px;
 }
+
+#Info > #InfoButton {
+    width: 100%;
+    background: darkgray;
+    color:white;
+    border: none;
+    border-radius: 50px;
+}
+#Info > #InfoButton:active {
+    background: gray;
+    color:white;
+}
+
 /* showLog.html */
 #go > #backButton {
     width: 100%;
@@ -400,14 +429,7 @@ RR
 #titleImage > img {
     max-width: 100%;
 }
-#team_name {
-    float:right;
-    display: flex;
-    justify-content: right;
-    font-size: 180%;
-    color: #4A59DF;
-    width:60%;
-}
+
 
 .algorithmExplain{
     margin-top: 5%;
@@ -436,14 +458,58 @@ RR
     color: #9699F1;
 }
 
+
+/**
+show modal - How to Use
+ */
+#Information {
+    z-index: 1;
+    position: fixed;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+}
+
+#HowToUse {
+    width: 50%;
+    height: 550px;
+    overflow-y: scroll;
+    padding: 30px 30px;
+    margin-left: auto;
+    margin-right : auto;
+    background-color: wheat;
+}
+#HowToUse::-webkit-scrollbar {
+    display: none;
+}
+#closeHowToUse {
+  float:right;
+  font-weight: bold;
+  color: #777;
+  font-size:25px;
+  cursor: pointer;
+}
+#HowToUse > img {
+    max-width: 100%;
+    max-height: 100%;
+}
+#HowToUse > #useInfo {
+    font-family: 'SCDream', serif;
+}
+#HowToUse > #useInfo > span {
+    color: red;
+}
+
 /**
 번외 : 버튼 안 보이게 하기
  */
 #simulatorInfo, #processSubmit, #algorithmSubmit{
     display: none;
 }
-
-
 
 
 
@@ -658,7 +724,7 @@ RR
     border-collapse: collapse;
     border-spacing: 100pt;
     margin-left: 10px;
-    border-bottom: 20px solid #FFFFFF;
+    border-bottom: 20px solid white;
     background: #FFFFFF;
     color: #FFFFFF;
     font-size: 100%;

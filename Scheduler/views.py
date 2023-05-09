@@ -47,23 +47,22 @@ class Index(TemplateView):
             return HttpResponseBadRequest("코어가 없습니다.")
         if algorithm == "none":
             return HttpResponseBadRequest("알고리즘이 선택 되어있지 않습니다.")
-        if (algorithm == "RR" or algorithm == "MyAlgorithm") and quantum == 0:
+        if (algorithm == "RR" or algorithm == "BOSSAlgorithm") and quantum == 0:
             return HttpResponseBadRequest("Time Quantum이 입력 되어있지 않습니다.")
 
         # 시뮬레이션 넣기
         name = int(Simulator.objects.count()) + 1
         new_simulator = Simulator(name=name, quantum=quantum, Algorithm=algorithm)
         new_simulator.save()
-        # saved_simulator = Simulator.objects.last()
 
-        # 코어 저장
+        # # 코어 저장
         saved_simulator = Simulator.objects.last()
-        for i in range(PCoreCnt):
-            new_pcore = PCore(Simulator=saved_simulator, name=i + 1, powerConsumption=0.0, powerEfficiency=0.0)
-            new_pcore.save()
-        for i in range(ECoreCnt):
-            new_ecore = ECore(Simulator=saved_simulator, name=i + 1, powerConsumption=0.0, powerEfficiency=0.0)
-            new_ecore.save()
+        # for i in range(PCoreCnt):
+        #     new_pcore = PCore(Simulator=saved_simulator, name=i + 1, powerConsumption=0.0, powerEfficiency=0.0)
+        #     new_pcore.save()
+        # for i in range(ECoreCnt):
+        #     new_ecore = ECore(Simulator=saved_simulator, name=i + 1, powerConsumption=0.0, powerEfficiency=0.0)
+        #     new_ecore.save()
 
         # 프로세서 저장
         cnt = 0
@@ -85,7 +84,26 @@ class Index(TemplateView):
         # 프로세스 개수, 타임 퀀텀, [AT, BT], p코어 개수, e코어 개수
         resultInfo = doAlgorithm(int(processCnt), int(quantum), originalInfo, int(PCoreCnt), int(ECoreCnt), algorithm)
 
-        # todo : 간트 차트로 값 넘기기
+        # 코어 저장
+        coreW = resultInfo.get('coreW')
+        corePercent = resultInfo.get('corePercent')
+        coreIdx = 0
+        percentIdx = 0
+        for i in range(PCoreCnt):
+            new_pcore = PCore(Simulator=saved_simulator, name=i + 1,
+                              powerConsumption=coreW[coreIdx], powerEfficiency=corePercent[percentIdx])
+            new_pcore.save()
+            coreIdx += 1
+            percentIdx += 1
+        for i in range(ECoreCnt):
+            new_ecore = ECore(Simulator=saved_simulator, name=i + 1,
+                              powerConsumption=coreW[coreIdx], powerEfficiency=corePercent[percentIdx])
+            new_ecore.save()
+            coreIdx += 1
+            percentIdx += 1
+
+
+        # 간트 차트 값 넘기기
         try:
             forGantt = resultInfo.get('transport')
             maxFT = resultInfo.get('maxFT')
@@ -102,14 +120,8 @@ class Index(TemplateView):
             idx += 3
 
         # 간트 차트에 필요한 정보 저장
-        print(forGantt)
-        print(maxFT)
         timeTable = json.dumps(forGantt)
         FT = int(maxFT)
-        print("----------")
-        print(timeTable)
-        print(FT)
-        print("----------")
         new_ganttChart = GanttChart(Simulator=saved_simulator, timeTable=timeTable, finishTime=FT)
         new_ganttChart.save()
 
@@ -126,15 +138,12 @@ class ShowLog(DetailView):
         ECoreAll = ECore.objects.filter(Simulator__name=self.kwargs.get('pk'))
         SimulatorInfo = Simulator.objects.get(name=self.kwargs.get('pk'))
         GanttChartInfo = GanttChart.objects.filter(Simulator__name=self.kwargs.get('pk'))
-        # print(GanttChartInfo)
-        # print(GanttChartInfo.values())
-        # # print(GanttChartInfo.values().get('QuerySet'))
-        # print("info")
-        # print(GanttChartInfo.values_list('timeTable', flat=True))
+        NowSimulator = self.kwargs.get('pk')
         simulatorLog = Simulator.objects.all()
         return render(self.request, 'showLog.html', {'processAll': processAll,
                                                      'PCoreAll': PCoreAll,
                                                      'ECoreAll': ECoreAll,
                                                      'SimulatorInfo': SimulatorInfo,
                                                      'GanttChartInfo': GanttChartInfo.values(),
-                                                     'simulatorLog': simulatorLog.values()})
+                                                     'simulatorLog': simulatorLog.values(),
+                                                     'NowSimulator': NowSimulator})
