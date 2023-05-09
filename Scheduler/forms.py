@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import modelformset_factory
 
-from .models import Process, Simulator, PCore, ECore, GanttChart
+from .models import Process, Simulator, PCore, ECore
 
 
 # 프로세스 AT,BT 받는 폼

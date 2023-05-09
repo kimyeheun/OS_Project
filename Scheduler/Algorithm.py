@@ -1,10 +1,3 @@
-# FCFS 완성
-# RR 완성
-# SRTN 완성
-# SPN 완성
-# HRRN 완성
-# MYAlgorithm 진행 중
-
 import queue
 
 
@@ -87,14 +80,10 @@ class Core:
                     else:  # BT가 1 이하일 때
                         run_p.BT -= 1
                         result.append(run_p)
-                    self.totalW += 3  # 총 전력은 1초에 3W씩 늘어남
-                    self.core_totalW[i] += 3
                 else:  # E코어라면
                     run_e = self.cores[i].get()
                     run_e.BT -= 1  # 1초에 BT -1씩
                     result.append(run_e)
-                    self.totalW += 1  # 총 전력은 1초에 1W씩 늘어남
-                    self.core_totalW[i] += 1
         return result  # 1초에 실행된 프로세스들 (만약 BT가 0이 된 프로세스가 있다면 그 프로세스 처리해)
 
 
@@ -215,35 +204,41 @@ class FCFS:
         for k in range(core.corenum):
             if k < core.pnum:  # P코어라면
                 for i in range(len(self.transport)):
-                    if (i - 1 >= 0):
-                        if self.transport[i - 1][k] == 0:  # 이전 값이 0이라면 비어 있었다는 뜻. 즉 시동전력 더해야 함
+                    if self.transport[i][k] != 0:
+                        core.totalW += 3
+                        core.core_totalW[k] += 3
+                    if i - 1 >= 0:
+                        if self.transport[i - 1][k] == 0 and self.transport[i][k] != 0:
+                            # 이전 값이 0이고 현재 값이 0이 아니라면 시동전력 더하기
                             core.totalW += core.p_startW
                             core.core_totalW[k] += core.p_startW
-                    elif i - 1 < 0 and self.transport[i][k] != 0:  # 첫번째 값이야
+                    elif i - 1 < 0 and self.transport[i][k] != 0:  # 첫번째 배열이고 지금 값이 0이 아니라면 시동전력 더하기
                         core.totalW += core.p_startW
                         core.core_totalW[k] += core.p_startW
             else:  # E코어라면
                 for i in range(len(self.transport)):
+                    if self.transport[i][k] != 0:
+                        core.totalW += 1
+                        core.core_totalW[k] += 1
                     if i - 1 >= 0:
-                        if self.transport[i - 1][k] == 0:
+                        if self.transport[i - 1][k] == 0 and self.transport[i][k] != 0:
+                            # 이전 값이 0이고 현재 값이 0이 아니라면 시동전력 더하기
                             core.totalW += core.e_startW
                             core.core_totalW[k] += core.e_startW
-                    elif i - 1 < 0 and self.transport[i][k] != 0:  # 첫번째 값이야
+                    elif i - 1 < 0 and self.transport[i][k] != 0:
+                        # 첫 번째 배열이고 지금 값이 0이 아니라면 시동전력 더하기
                         core.totalW += core.e_startW
                         core.core_totalW[k] += core.e_startW
 
         coreW = []
         # 코어 별 소비효율 = 코어 별 총 소비전력 / 총 소비 전력
-        print("총 소비 전력 : {}".format(round(core.totalW, 1)))
         for i in range(core.corenum):
             coreW.append(round(core.core_totalW[i], 1))
-            print("코어 별 총 소비전력 : {}".format(round(core.core_totalW[i], 1)))
 
         corePercent = []
         for i in range(core.corenum):
             core.core_effW[i] = round((core.core_totalW[i] / core.totalW) * 100, 1)
             corePercent.append(core.core_effW[i])
-            print("코어 별 소비효율 : {}".format(core.core_effW[i]))
 
         newInfo = []
         for i in range(self.num_process):
@@ -399,35 +394,41 @@ class RR:
         for k in range(core.corenum):
             if k < core.pnum:  # P코어라면
                 for i in range(len(self.transport)):
-                    if (i - 1 >= 0):
-                        if self.transport[i - 1][k] == 0:  # 이전 값이 0이라면 비어 있었다는 뜻. 즉 시동전력 더해야 함
+                    if self.transport[i][k] != 0:
+                        core.totalW += 3
+                        core.core_totalW[k] += 3
+                    if i - 1 >= 0:
+                        if self.transport[i - 1][k] == 0 and self.transport[i][k] != 0:
+                            # 이전 값이 0이고 현재 값이 0이 아니라면 시동전력 더하기
                             core.totalW += core.p_startW
                             core.core_totalW[k] += core.p_startW
-                    elif i - 1 < 0 and self.transport[i][k] != 0:  # 첫번째 값이야
+                    elif i - 1 < 0 and self.transport[i][k] != 0:  # 첫번째 배열이고 지금 값이 0이 아니라면 시동전력 더하기
                         core.totalW += core.p_startW
                         core.core_totalW[k] += core.p_startW
             else:  # E코어라면
                 for i in range(len(self.transport)):
+                    if self.transport[i][k] != 0:
+                        core.totalW += 1
+                        core.core_totalW[k] += 1
                     if i - 1 >= 0:
-                        if self.transport[i - 1][k] == 0:
+                        if self.transport[i - 1][k] == 0 and self.transport[i][k] != 0:
+                            # 이전 값이 0이고 현재 값이 0이 아니라면 시동전력 더하기
                             core.totalW += core.e_startW
                             core.core_totalW[k] += core.e_startW
-                    elif i - 1 < 0 and self.transport[i][k] != 0:  # 첫번째 값이야
+                    elif i - 1 < 0 and self.transport[i][k] != 0:
+                        # 첫 번째 배열이고 지금 값이 0이 아니라면 시동전력 더하기
                         core.totalW += core.e_startW
                         core.core_totalW[k] += core.e_startW
 
         coreW = []
         # 코어 별 소비효율 = 코어 별 총 소비전력 / 총 소비 전력
-        print("총 소비 전력 : {}".format(round(core.totalW, 1)))
         for i in range(core.corenum):
             coreW.append(round(core.core_totalW[i], 1))
-            print("코어 별 총 소비전력 : {}".format(round(core.core_totalW[i], 1)))
 
         corePercent = []
         for i in range(core.corenum):
             core.core_effW[i] = round((core.core_totalW[i] / core.totalW) * 100, 1)
             corePercent.append(core.core_effW[i])
-            print("코어 별 소비효율 : {}".format(core.core_effW[i]))
 
         newInfo = []
         for i in range(self.num_process):
@@ -561,35 +562,41 @@ class SPN:
         for k in range(core.corenum):
             if k < core.pnum:  # P코어라면
                 for i in range(len(self.transport)):
-                    if (i - 1 >= 0):
-                        if self.transport[i - 1][k] == 0:  # 이전 값이 0이라면 비어 있었다는 뜻. 즉 시동전력 더해야 함
+                    if self.transport[i][k] != 0:
+                        core.totalW += 3
+                        core.core_totalW[k] += 3
+                    if i - 1 >= 0:
+                        if self.transport[i - 1][k] == 0 and self.transport[i][k] != 0:
+                            # 이전 값이 0이고 현재 값이 0이 아니라면 시동전력 더하기
                             core.totalW += core.p_startW
                             core.core_totalW[k] += core.p_startW
-                    elif i - 1 < 0 and self.transport[i][k] != 0:  # 첫번째 값이야
+                    elif i - 1 < 0 and self.transport[i][k] != 0:  # 첫번째 배열이고 지금 값이 0이 아니라면 시동전력 더하기
                         core.totalW += core.p_startW
                         core.core_totalW[k] += core.p_startW
             else:  # E코어라면
                 for i in range(len(self.transport)):
+                    if self.transport[i][k] != 0:
+                        core.totalW += 1
+                        core.core_totalW[k] += 1
                     if i - 1 >= 0:
-                        if self.transport[i - 1][k] == 0:
+                        if self.transport[i - 1][k] == 0 and self.transport[i][k] != 0:
+                            # 이전 값이 0이고 현재 값이 0이 아니라면 시동전력 더하기
                             core.totalW += core.e_startW
                             core.core_totalW[k] += core.e_startW
-                    elif i - 1 < 0 and self.transport[i][k] != 0:  # 첫번째 값이야
+                    elif i - 1 < 0 and self.transport[i][k] != 0:
+                        # 첫 번째 배열이고 지금 값이 0이 아니라면 시동전력 더하기
                         core.totalW += core.e_startW
                         core.core_totalW[k] += core.e_startW
 
         coreW = []
         # 코어 별 소비효율 = 코어 별 총 소비전력 / 총 소비 전력
-        print("총 소비 전력 : {}".format(round(core.totalW, 1)))
         for i in range(core.corenum):
             coreW.append(round(core.core_totalW[i], 1))
-            print("코어 별 총 소비전력 : {}".format(round(core.core_totalW[i], 1)))
 
         corePercent = []
         for i in range(core.corenum):
             core.core_effW[i] = round((core.core_totalW[i] / core.totalW) * 100, 1)
             corePercent.append(core.core_effW[i])
-            print("코어 별 소비효율 : {}".format(core.core_effW[i]))
 
         newInfo = []
         for i in range(self.num_process):
@@ -718,35 +725,41 @@ class SRTN:
         for k in range(core.corenum):
             if k < core.pnum:  # P코어라면
                 for i in range(len(self.transport)):
-                    if (i - 1 >= 0):
-                        if self.transport[i - 1][k] == 0:  # 이전 값이 0이라면 비어 있었다는 뜻. 즉 시동전력 더해야 함
+                    if self.transport[i][k] != 0:
+                        core.totalW += 3
+                        core.core_totalW[k] += 3
+                    if i - 1 >= 0:
+                        if self.transport[i - 1][k] == 0 and self.transport[i][k] != 0:
+                            # 이전 값이 0이고 현재 값이 0이 아니라면 시동전력 더하기
                             core.totalW += core.p_startW
                             core.core_totalW[k] += core.p_startW
-                    elif i - 1 < 0 and self.transport[i][k] != 0:  # 첫번째 값이야
+                    elif i - 1 < 0 and self.transport[i][k] != 0:  # 첫번째 배열이고 지금 값이 0이 아니라면 시동전력 더하기
                         core.totalW += core.p_startW
                         core.core_totalW[k] += core.p_startW
             else:  # E코어라면
                 for i in range(len(self.transport)):
+                    if self.transport[i][k] != 0:
+                        core.totalW += 1
+                        core.core_totalW[k] += 1
                     if i - 1 >= 0:
-                        if self.transport[i - 1][k] == 0:
+                        if self.transport[i - 1][k] == 0 and self.transport[i][k] != 0:
+                            # 이전 값이 0이고 현재 값이 0이 아니라면 시동전력 더하기
                             core.totalW += core.e_startW
                             core.core_totalW[k] += core.e_startW
-                    elif i - 1 < 0 and self.transport[i][k] != 0:  # 첫번째 값이야
+                    elif i - 1 < 0 and self.transport[i][k] != 0:
+                        # 첫 번째 배열이고 지금 값이 0이 아니라면 시동전력 더하기
                         core.totalW += core.e_startW
                         core.core_totalW[k] += core.e_startW
 
         coreW = []
         # 코어 별 소비효율 = 코어 별 총 소비전력 / 총 소비 전력
-        print("총 소비 전력 : {}".format(round(core.totalW, 1)))
         for i in range(core.corenum):
             coreW.append(round(core.core_totalW[i], 1))
-            print("코어 별 총 소비전력 : {}".format(round(core.core_totalW[i], 1)))
 
         corePercent = []
         for i in range(core.corenum):
             core.core_effW[i] = round((core.core_totalW[i] / core.totalW) * 100, 1)
             corePercent.append(core.core_effW[i])
-            print("코어 별 소비효율 : {}".format(core.core_effW[i]))
 
         newInfo = []
         for i in range(self.num_process):
@@ -886,35 +899,41 @@ class HRRN:
         for k in range(core.corenum):
             if k < core.pnum:  # P코어라면
                 for i in range(len(self.transport)):
+                    if self.transport[i][k] != 0:
+                        core.totalW += 3
+                        core.core_totalW[k] += 3
                     if i - 1 >= 0:
-                        if self.transport[i - 1][k] == 0:  # 이전 값이 0이라면 비어 있었다는 뜻. 즉 시동전력 더해야 함
+                        if self.transport[i - 1][k] == 0 and self.transport[i][k] != 0:
+                            # 이전 값이 0이고 현재 값이 0이 아니라면 시동전력 더하기
                             core.totalW += core.p_startW
                             core.core_totalW[k] += core.p_startW
-                    elif i - 1 < 0 and self.transport[i][k] != 0:  # 첫번째 값이야
+                    elif i - 1 < 0 and self.transport[i][k] != 0:  # 첫번째 배열이고 지금 값이 0이 아니라면 시동전력 더하기
                         core.totalW += core.p_startW
                         core.core_totalW[k] += core.p_startW
             else:  # E코어라면
                 for i in range(len(self.transport)):
+                    if self.transport[i][k] != 0:
+                        core.totalW += 1
+                        core.core_totalW[k] += 1
                     if i - 1 >= 0:
-                        if self.transport[i - 1][k] == 0:
+                        if self.transport[i - 1][k] == 0 and self.transport[i][k] != 0:
+                            # 이전 값이 0이고 현재 값이 0이 아니라면 시동전력 더하기
                             core.totalW += core.e_startW
                             core.core_totalW[k] += core.e_startW
-                    elif i - 1 < 0 and self.transport[i][k] != 0:  # 첫번째 값이야
+                    elif i - 1 < 0 and self.transport[i][k] != 0:
+                        # 첫 번째 배열이고 지금 값이 0이 아니라면 시동전력 더하기
                         core.totalW += core.e_startW
                         core.core_totalW[k] += core.e_startW
 
         coreW = []
         # 코어 별 소비효율 = 코어 별 총 소비전력 / 총 소비 전력
-        print("총 소비 전력 : {}".format(round(core.totalW, 1)))
         for i in range(core.corenum):
             coreW.append(round(core.core_totalW[i], 1))
-            print("코어 별 총 소비전력 : {}".format(round(core.core_totalW[i], 1)))
 
         corePercent = []
         for i in range(core.corenum):
             core.core_effW[i] = round((core.core_totalW[i] / core.totalW) * 100, 1)
             corePercent.append(core.core_effW[i])
-            print("코어 별 소비효율 : {}".format(core.core_effW[i]))
 
         newInfo = []
         for i in range(self.num_process):
@@ -1038,35 +1057,41 @@ class BOSS:
         for k in range(core.corenum):
             if k < core.pnum:  # P코어라면
                 for i in range(len(self.transport)):
-                    if (i - 1 >= 0):
-                        if self.transport[i - 1][k] == 0:  # 이전 값이 0이라면 비어 있었다는 뜻. 즉 시동전력 더해야 함
+                    if self.transport[i][k] != 0:
+                        core.totalW += 3
+                        core.core_totalW[k] += 3
+                    if i - 1 >= 0:
+                        if self.transport[i - 1][k] == 0 and self.transport[i][k] != 0:
+                            # 이전 값이 0이고 현재 값이 0이 아니라면 시동전력 더하기
                             core.totalW += core.p_startW
                             core.core_totalW[k] += core.p_startW
-                    elif i - 1 < 0 and self.transport[i][k] != 0:  # 첫번째 값이야
+                    elif i - 1 < 0 and self.transport[i][k] != 0:  # 첫번째 배열이고 지금 값이 0이 아니라면 시동전력 더하기
                         core.totalW += core.p_startW
                         core.core_totalW[k] += core.p_startW
             else:  # E코어라면
                 for i in range(len(self.transport)):
+                    if self.transport[i][k] != 0:
+                        core.totalW += 1
+                        core.core_totalW[k] += 1
                     if i - 1 >= 0:
-                        if self.transport[i - 1][k] == 0:
+                        if self.transport[i - 1][k] == 0 and self.transport[i][k] != 0:
+                            # 이전 값이 0이고 현재 값이 0이 아니라면 시동전력 더하기
                             core.totalW += core.e_startW
                             core.core_totalW[k] += core.e_startW
-                    elif i - 1 < 0 and self.transport[i][k] != 0:  # 첫번째 값이야
+                    elif i - 1 < 0 and self.transport[i][k] != 0:
+                        # 첫 번째 배열이고 지금 값이 0이 아니라면 시동전력 더하기
                         core.totalW += core.e_startW
                         core.core_totalW[k] += core.e_startW
 
         coreW = []
         # 코어 별 소비효율 = 코어 별 총 소비전력 / 총 소비 전력
-        print("총 소비 전력 : {}".format(round(core.totalW, 1)))
         for i in range(core.corenum):
             coreW.append(round(core.core_totalW[i], 1))
-            print("코어 별 총 소비전력 : {}".format(round(core.core_totalW[i], 1)))
 
         corePercent = []
         for i in range(core.corenum):
             core.core_effW[i] = round((core.core_totalW[i] / core.totalW) * 100, 1)
             corePercent.append(core.core_effW[i])
-            print("코어 별 소비효율 : {}".format(core.core_effW[i]))
 
         newInfo = []
         for i in range(self.num_process):

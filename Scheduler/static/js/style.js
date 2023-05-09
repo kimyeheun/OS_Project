@@ -327,11 +327,13 @@ document.addEventListener("DOMContentLoaded", function() {
     let HowToUse = document.getElementById('Information');
     let closeHowToUse = document.getElementById('closeHowToUse');
 
-    InfoBtn.onclick = function() {
-      HowToUse.style.display = 'block';
-    }
-    closeHowToUse.onclick = function() {
-      HowToUse.style.display = 'none';
+    if (InfoBtn != null) {
+        InfoBtn.onclick = function () {
+            HowToUse.style.display = 'block';
+        }
+        closeHowToUse.onclick = function () {
+            HowToUse.style.display = 'none';
+        }
     }
 
     window.onclick = function(event) {
