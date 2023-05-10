@@ -21,7 +21,7 @@ This project is made for the **Operating Systems** course at the Korea Universit
   - [<img src="https://img.shields.io/badge/깃허브아이디-181717?style=flat&logo=github&logoColor=white"/>]()
 
 ## 🔗**URL**
-[나중에 링크를 적어주세요^-^](bossalgorithmario.pythonanywhere.com)
+[나중에 링크를 적어주세요^-^](https://bossalgorithmario.pythonanywhere.com)
 
 ## 📌**How to use**
 어떻게 쓸까요~?
