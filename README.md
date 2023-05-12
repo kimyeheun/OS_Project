@@ -23,9 +23,6 @@ This project is made for the **Operating Systems** course at the Korea Universit
 ## 🔗**URL**
 [Simulator - BOSS](https://bossalgorithmario.pythonanywhere.com)
 
-## 📌**How to use**
-어떻게 쓸까요~?
-
 ## ⚙️**Tech Stack**
 ### Languages & Frameworks
 <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white"/> <img src="https://img.shields.io/badge/CSS-1572B6?style=flat&logo=CSS3&logoColor=white"/> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=white"/> <img src="https://img.shields.io/badge/jQuery-0769AD?style=flat&logo=jquery&logoColor=white"/> <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white"/> <img src="https://img.shields.io/badge/Django-092E20?style=flat&logo=Django&logoColor=white"/>
