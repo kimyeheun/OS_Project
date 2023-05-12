@@ -1,16 +1,10 @@
 from django import forms
 from django.forms import modelformset_factory
 
-from .models import Process, Simulator, PCore, ECore
+from .models import Process, Simulator
 
 
 # 프로세스 AT,BT 받는 폼
-class ProcessForm(forms.ModelForm):
-    class Meta:
-        model = Process
-        fields = ["AT", "BT"]
-
-
 ProcessFormSet = modelformset_factory(
     Process,
     fields=("AT", "BT"),
@@ -30,22 +24,4 @@ class SimulatorForm(forms.ModelForm):
                                                ('HRRN', 'HRRN (Highest Response Ratio Next)'),
                                                ('SRTN', 'SRTN (Shortest Remaining Time Next)')])
         }
-
-
-class SimulatorLogForm(forms.ModelForm):
-    class Meta:
-        model = Simulator
-        fields = ['name']
-
-
-class PCoreForm(forms.ModelForm):
-    class Meta:
-        model = PCore
-        fields = ['powerConsumption', 'powerEfficiency']
-
-
-class ECoreForm(forms.ModelForm):
-    class Meta:
-        model = ECore
-        fields = ['powerConsumption', 'powerEfficiency']
 
