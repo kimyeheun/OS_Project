@@ -1,4 +1,4 @@
-from django.http import QueryDict, HttpResponse, HttpResponseBadRequest, JsonResponse
+from django.http import QueryDict, HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render
 from django.views.generic import TemplateView, DetailView
 import json
@@ -6,14 +6,6 @@ import json
 from .forms import ProcessFormSet, SimulatorForm
 from .logic import doAlgorithm
 from .models import Process, Simulator, PCore, ECore, GanttChart
-
-
-def index(request):
-    return render(request, 'index.html')
-
-
-def showInfo(request):
-    return render(request, 'showLog.html')
 
 
 class Index(TemplateView):
@@ -55,14 +47,8 @@ class Index(TemplateView):
         new_simulator = Simulator(name=name, quantum=quantum, Algorithm=algorithm)
         new_simulator.save()
 
-        # # 코어 저장
+        # 코어 저장
         saved_simulator = Simulator.objects.last()
-        # for i in range(PCoreCnt):
-        #     new_pcore = PCore(Simulator=saved_simulator, name=i + 1, powerConsumption=0.0, powerEfficiency=0.0)
-        #     new_pcore.save()
-        # for i in range(ECoreCnt):
-        #     new_ecore = ECore(Simulator=saved_simulator, name=i + 1, powerConsumption=0.0, powerEfficiency=0.0)
-        #     new_ecore.save()
 
         # 프로세서 저장
         cnt = 0
