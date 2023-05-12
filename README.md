@@ -4,21 +4,21 @@
 This project is made for the **Operating Systems** course at the Korea University of Technology and Engineering (*KOREATECH*). The project is a web site that can be used to make a Gantt Chart about the **process scheduling** algorithms.
 
 ## 🗓️**Development Period**
-2023.04.XX. ~ 2023.05.XX.
+2023.03.28. ~ 2023.05.12.
 
 ## 👤**Team Members**
 * 김가람 *Kim Garam*
   - 컴퓨터공학부 *Computer Science and Engineering* - 21학번
   - [<img src="https://img.shields.io/badge/garamkim83-181717?style=flat&logo=github&logoColor=white"/>](https://github.com/garamkim83)
-* 김예은 *Kim Yeeun*
+* 김예은 *Kim Yeheun*
   - 컴퓨터공학부 *Computer Science and Engineering* - 21학번
   - [<img src="https://img.shields.io/badge/kimyeheun-181717?style=flat&logo=github&logoColor=white"/>](https://github.com/kimyeheun)
-* 이채린 (Lee Chaerin)
+* 이채린 *Lee Chaerin*
   - 컴퓨터공학부 *Computer Science and Engineering* - 20학번
-  - [<img src="https://img.shields.io/badge/깃허브아이디-181717?style=flat&logo=github&logoColor=white"/>]()
-* 임지수 (Lim Jisoo)
+  - [<img src="https://img.shields.io/badge/Rix01-181717?style=flat&logo=github&logoColor=white"/>](https://github.com/Rix01)
+* 임지수 *Lim Jisu*
   - 컴퓨터공학부 *Computer Science and Engineering* - 21학번
-  - [<img src="https://img.shields.io/badge/깃허브아이디-181717?style=flat&logo=github&logoColor=white"/>]()
+  - [<img src="https://img.shields.io/badge/jjimongs-181717?style=flat&logo=github&logoColor=white"/>](https://github.com/jjimongs)
 
 ## 🔗**URL**
 [나중에 링크를 적어주세요^-^](https://bossalgorithmario.pythonanywhere.com)
