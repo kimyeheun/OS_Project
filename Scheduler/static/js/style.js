@@ -244,13 +244,13 @@ $(document).ready(function() {
 /**
  * Input Field Valid Check - Only Number
  */
-function handleInputChange() {
+function inputOnlyInteger() {
     this.value = this.value.replace(/[^0-9]/g, '');
 }
 
 $(document).ready(function() {
-    $("input[type='text']").on('input', handleInputChange);
-    $(document).on('input', "input[type='text']", handleInputChange); //새로 추가 되는 input 태그
+    $("input[type='text']").on('input', inputOnlyInteger);
+    $(document).on('input', "input[type='text']", inputOnlyInteger); //새로 추가 되는 input 태그
 
     $.ajaxSetup({
         beforeSend: function(xhr, settings) {
