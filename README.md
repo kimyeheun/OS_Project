@@ -21,10 +21,7 @@ This project is made for the **Operating Systems** course at the Korea Universit
   - [<img src="https://img.shields.io/badge/jjimongs-181717?style=flat&logo=github&logoColor=white"/>](https://github.com/jjimongs)
 
 ## 🔗**URL**
-[나중에 링크를 적어주세요^-^](https://bossalgorithmario.pythonanywhere.com)
-
-## 📌**How to use**
-어떻게 쓸까요~?
+[Simulator - BOSS](https://bossalgorithmario.pythonanywhere.com)
 
 ## ⚙️**Tech Stack**
 ### Languages & Frameworks

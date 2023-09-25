@@ -1,5 +1,4 @@
 from django.db import models
-from django.urls import reverse
 
 
 class Process(models.Model):
@@ -26,9 +25,6 @@ class Simulator(models.Model):
 
     def __repr__(self):
         return 'Simulation' + str(self.name)
-
-    def get_absolute_url(self):
-        return reverse('showLog', args=[int(self.pk)])
 
 
 class PCore(models.Model):
